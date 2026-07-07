@@ -21,7 +21,7 @@
     </title>
     <meta
       name="description"
-      content="Prasham Shah — CS + Math at Harvard College. ML researcher (Best Poster, IEEE MIT URTC) and full-stack engineer (1st place, Empower Hacks 2.0)."
+      content="Prasham Shah — CS + Math at Harvard College, ML researcher, and full-stack engineer."
     />
 
     <link
@@ -974,6 +974,44 @@
         max-width: 680px;
         margin-bottom: 22px;
       }
+      .research-details {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.35s ease;
+      }
+
+      .research-details-inner {
+        overflow: hidden;
+      }
+
+      .research-card.open .research-details {
+        grid-template-rows: 1fr;
+      }
+
+      .research-toggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--accent);
+        cursor: pointer;
+        user-select: none;
+        transition: opacity 0.2s;
+      }
+
+      .research-toggle:hover {
+        opacity: 0.8;
+      }
+
+      .research-toggle svg {
+        transition: transform 0.3s ease;
+      }
+
+      .research-card.open .research-toggle svg {
+        transform: rotate(180deg);
+      }
       .chip-row {
         display: flex;
         flex-wrap: wrap;
@@ -1565,9 +1603,7 @@
         </div>
         <p class="hero-sub">
           I build systems that <strong>discover patterns in data</strong> and
-          ship <strong>real software real people use</strong> — from a
-          first-authored IEEE poster on equation discovery to a legal-aid tool
-          that placed 1st among 2,000 hackers.
+          ship <strong>real software real people use</strong>.
         </p>
         <div class="proof-strip">
           <span class="proof-item"
@@ -1582,8 +1618,8 @@
               <path
                 d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.1L12 16.3l-6.3 4.4L8 13.6l-6-4.4h7.6z"
               /></svg
-            ><span class="pv">Best Poster</span>&nbsp;— IEEE MIT URTC, among
-            ~700 total submissions</span
+            ><span class="pv">Best IEEE Poster</span>&nbsp;— at MIT URTC (among
+            ~700 total submissions) for symbolic-regression research</span
           >
           <span class="proof-item"
             ><svg
@@ -1597,8 +1633,8 @@
               <path
                 d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.1L12 16.3l-6.3 4.4L8 13.6l-6-4.4h7.6z"
               /></svg
-            ><span class="pv">1st place</span>&nbsp;— Empower Hacks 2.0 (2,000
-            competitors)</span
+            ><span class="pv">1st place</span>&nbsp;— at Empower Hacks 2.0
+            (2,000 competitors, $210k prize pool) for Legal Lieutenant</span
           >
           <span class="proof-item"
             ><svg
@@ -1689,20 +1725,9 @@
                   full-stack engineering — trained on real datasets, shipped to
                   real users.
                 </p>
-                <p>
-                  On the research side, I'm first author on an
-                  <strong>IEEE paper and conference poster</strong> discovering
-                  human-readable equations from physics data, awarded
-                  <strong>Best Poster at MIT URTC</strong> among roughly 700
-                  total submissions. On the engineering side, I led a team to
-                  <strong>1st place at Empower Hacks 2.0</strong>, shipped a
-                  production summer-storage platform live at 17+ college
-                  campuses, and grown a game I built solo to 200+ daily
-                  players.
-                </p>
                 <p class="ask">
-                  I'm currently looking for research and engineering
-                  internships — reach out below.
+                  I'm currently looking for research and engineering internships
+                  — reach out below.
                 </p>
               </div>
             </div>
@@ -1711,24 +1736,24 @@
                 <div class="fact-block">
                   <span class="fact-label">Research</span>
                   <div class="fact-value">
-                    <strong>ML &amp; AI</strong> · symbolic regression ·
-                    neural-network interpretability · multimodal robustness
+                    ML &amp; AI · symbolic regression · neural-network
+                    interpretability · multimodal robustness
                   </div>
                 </div>
                 <div class="fact-block">
                   <span class="fact-label">Engineering</span>
                   <div class="fact-value">
-                    <strong>Full-stack</strong> — React / React Native,
-                    Firebase, Node &amp; Express &nbsp;·&nbsp;
-                    <strong>Embedded</strong> — Android, OpenCV, PID control
-                    &nbsp;·&nbsp; <strong>Real-time</strong> — WebSockets
+                    Full-stack development · ML &amp; AI infrastructure ·
+                    parallel computing · optimization · scaling
                   </div>
                 </div>
                 <div class="fact-block">
                   <span class="fact-label">Currently</span>
                   <div class="fact-value">
-                    <strong>Software Engineer</strong> @ Dorm To Door Student
-                    Storage · Coursework @ Harvard &amp; MIT
+                    <strong>Software Engineer</strong> @ Dorm to Door Student
+                    Storage
+                    <br />
+                    <strong>Student</strong> @ Harvard &amp; MIT
                   </div>
                 </div>
                 <div class="lang-strip">
@@ -1753,10 +1778,10 @@
               fooling themselves.
             </h2>
             <p>
-              Two independent research threads — one on getting models to
-              discover clean equations for physical laws, the other on
-              stress-testing whether multimodal LLMs can be trusted under noisy,
-              real-world conditions.
+              Two related research threads — one on getting models to discover
+              clean equations for physical laws, the other on stress-testing
+              whether multimodal LLMs can be trusted under noisy, real-world
+              conditions.
             </p>
           </div>
 
@@ -1768,47 +1793,22 @@
                   Drew University · Advised by Dr. Minjoon Kouh
                 </div>
               </div>
-              <span class="research-badge"
-                >🏆 Best Poster — IEEE MIT URTC, among ~700 total
-                submissions</span
-              >
+              <span class="research-badge">Research lab · 1st author</span>
             </div>
             <p class="research-lede">
-              "Teaching AI to discover human-readable equations directly from
-              raw physics data — not just predict, but explain."
+              "Can artificial neural networks, bolstered by physical intuition
+              about symmetries, recover fundamental laws from noisy data?"
             </p>
-            <p class="research-body">
-              I led the CS research team on this project and first-authored
-              both the resulting IEEE paper, first presented at the David
-              Miyamoto Scholars Conference, and a distilled poster, awarded
-              Best Poster at IEEE MIT URTC among roughly 700 total conference
-              submissions. The team replicated Udrescu &amp;
-              Tegmark's
-              <em>AI Feynman</em> (2020) from scratch — regression, functional
-              feature expansion, and symmetry detection — to expose its core
-              mechanisms, then extended it to address two problems the original
-              left unresolved: noisy data and variable numerical scales. Testing
-              on synthetic physics datasets with Gaussian noise, the system
-              rediscovered equations with near-perfect accuracy at zero noise
-              (R² ≈ 1.00 for most physics-derived equations) but degraded
-              sharply as noise increased, falling to R² ≈ 0.49 at σ = 0.2 and
-              collapsing below zero at σ = 0.4, with failures showing up as
-              either underfitting or bloated, spurious equations. My most
-              significant contribution — a novel
-              <strong style="color: var(--ink)">adaptive-α rule</strong> that
-              scales symmetry-detection thresholds to each dataset's
-              distribution — nearly doubled true symmetry detections (60 → 110)
-              while cutting false positives
-              <strong style="color: var(--accent)">tenfold (29 → 3)</strong>,
-              with the largest gains at small numerical ranges. This key
-              improvement makes the technology much more useful for cutting-edge
-              science.
-            </p>
+
+            <span class="project-metric"
+              >🏆 Best Poster — IEEE MIT URTC, among ~700 total
+              submissions</span
+            >
             <div class="chip-row">
-              <span class="chip">Python</span><span class="chip">PyTorch</span
-              ><span class="chip">SymPy</span
+              <span class="chip">PyTorch</span><span class="chip">SymPy</span
               ><span class="chip">Scikit-learn</span
               ><span class="chip">NumPy / Pandas</span>
+              <span class="chip">Python</span>
             </div>
             <div class="research-viz">
               <div class="eq-viz">
@@ -1826,6 +1826,53 @@
                 </p>
               </div>
             </div>
+            <div class="research-toggle">
+              <span>Read technical details</span>
+
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </div>
+
+            <div class="research-details">
+              <div class="research-details-inner">
+                <p class="research-body">
+                  I led the CS research team on this project and first-authored
+                  both the resulting IEEE paper, first presented at the David
+                  Miyamoto Scholars Conference, and a distilled poster, awarded
+                  Best Poster at IEEE MIT URTC among roughly 700 total
+                  conference submissions. My team replicated Udrescu &amp;
+                  Tegmark's
+                  <em>AI Feynman</em> (2020) from scratch — regression,
+                  functional feature expansion, and symmetry detection — to
+                  expose its core mechanisms, then extended it to address two
+                  problems the original left unresolved: noisy data and variable
+                  numerical scales. Testing on synthetic physics datasets with
+                  Gaussian noise, the original system rediscovered equations
+                  with near-perfect accuracy at zero noise (R² ≈ 1.00 for most
+                  physics-derived equations) but degraded sharply as noise
+                  increased, falling to R² ≈ 0.49 at σ = 0.2 and collapsing
+                  below zero at σ = 0.4, with failures showing up as either
+                  underfitting or bloated, spurious equations. My most
+                  significant contribution — a novel
+                  <strong style="color: var(--ink)">adaptive-α rule</strong>
+                  that scales symmetry-detection thresholds to each dataset's
+                  distribution — nearly doubled true symmetry detections (60 →
+                  110) while cutting false positives
+                  <strong style="color: var(--accent)">tenfold (29 → 3)</strong
+                  >, with the largest gains at small numerical ranges. This key
+                  improvement makes the technology much more useful for
+                  cutting-edge science.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div class="research-card reveal" id="mllmRobustness">
@@ -1839,33 +1886,14 @@
               <span class="research-badge">Independent · 1st author</span>
             </div>
             <p class="research-lede">
-              "If you misspell a word or your camera is a little noisy, does the
-              model still get it right?"
+              "If you misspell a word, your camera is a little noisy, or your
+              scientific instrument's sensor has small defects, do multimodal
+              LLMs still get it right?"
             </p>
-            <p class="research-body">
-              I independently studied a question that hadn't yet been
-              examined in the literature: while the noise resistance of
-              classification models and text-only LLMs was known, no one had
-              measured it for multimodal LLMs (MLLMs). I tested two MLLMs
-              (GPT-4o and LLaVA) against textual noise (misspellings) and image
-              noise (Gaussian, salt-and-pepper, and speckle), alongside a
-              text-only baseline (GPT-3.5), across 10 textual and 30 image-based
-              prompts — each run clean, noised, and denoised (via
-              <em>aspell</em> for text, OpenCV's Fast NL Means for images). The
-              hypothesis that MLLMs would show worse noise resistance than a
-              traditional LLM was supported: MLLMs degraded significantly more
-              on noisy text than GPT-3.5 did (p=0.025), with the smaller model
-              (LLaVA) hit hardest (p=0.048). The second hypothesis — that
-              denoising would help — was refuted: classical denoising
-              significantly <strong style="color: var(--ink)">hurt</strong> text
-              performance instead of improving it (p=0.010), and showed no
-              reliable benefit on images either. A secondary, non-central
-              finding suggested lower-parameter models fare worse under noise,
-              consistent with the LLaVA result, though the study wasn't designed
-              to isolate model size as a variable. The practical takeaway: MLLM
-              users should focus on writing clean prompts up front rather than
-              leaning on traditional algorithmic denoisers.
-            </p>
+
+            <span class="project-metric"
+              >380+ abstract views, 120+ downloads</span
+            >
             <div class="chip-row">
               <span class="chip">Multimodal LLMs</span
               ><span class="chip">OpenCV</span
@@ -1924,15 +1952,14 @@
                   <span class="bar-value">2.25</span>
                 </div>
                 <div class="chart-caption">
-                  Average scores on a 0–3 scale, from the study's
-                  noise-resistance appendix (n=10 text prompts, n=30 image
-                  prompts). MLLM = GPT-4o + LLaVA combined.
+                  Average scores of model responses on a 0–3 scale (n=10 text
+                  prompts, n=30 image prompts). MLLM = GPT-4o + LLaVA combined.
                 </div>
               </div>
               <div>
                 <p class="research-body">
                   The clearest, most statistically significant result: denoising
-                  text prompts before feeding them to a multimodal (or even
+                  prompts before feeding them to a multimodal (or even
                   text-based) model made the model's answers
                   <strong style="color: var(--ink)">worse</strong>, not better —
                   the opposite of what a naive noise-handling pipeline would
@@ -1940,6 +1967,52 @@
                   language and real, messy images, appear to be good at sorting
                   through noisy inputs independently; traditional denoising
                   algorithms just get in the way.
+                </p>
+              </div>
+            </div>
+            <div class="research-toggle">
+              <span>Read technical details</span>
+
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </div>
+
+            <div class="research-details">
+              <div class="research-details-inner">
+                <p class="research-body">
+                  I independently studied a question that hadn't yet been
+                  examined in the literature: while the noise resistance of
+                  classification models and text-only LLMs was known, no one had
+                  measured it for multimodal LLMs (MLLMs). I tested two MLLMs
+                  (GPT-4o and LLaVA) against textual noise (misspellings) and
+                  image noise (Gaussian, salt-and-pepper, and speckle),
+                  alongside a text-only baseline (GPT-3.5), across 10 textual
+                  and 30 image-based prompts — each run clean, noised, and
+                  denoised (via
+                  <em>aspell</em> for text, OpenCV's Fast NL Means for images).
+                  The hypothesis that MLLMs would show worse noise resistance
+                  than a traditional LLM was supported: MLLMs degraded
+                  significantly more on noisy text than GPT-3.5 did (p=0.025),
+                  with the smaller model (LLaVA) hit hardest (p=0.048). The
+                  second hypothesis — that denoising would help — was refuted:
+                  classical denoising significantly
+                  <strong style="color: var(--ink)">hurt</strong> text
+                  performance instead of improving it (p=0.010), and showed no
+                  reliable benefit on images either. A secondary, non-central
+                  finding suggested lower-parameter models fare worse under
+                  noise, consistent with the LLaVA result, though the study
+                  wasn't designed to isolate model size as a variable. The
+                  practical takeaway: MLLM users should focus on writing clean
+                  prompts and providing clear images up front rather than
+                  leaning on traditional algorithmic denoisers.
                 </p>
               </div>
             </div>
@@ -1981,10 +2054,10 @@
               </div>
               <div class="project-content">
                 <span class="project-index">01 — Professional scaling</span>
-                <h3>Dorm To Door Student Storage</h3>
+                <h3>Dorm to Door Student Storage</h3>
                 <p class="project-pitch">
-                  Full-stack platform running live storage logistics for 17+
-                  campuses.
+                  Full-stack summer-storage platform for college students
+                  orchestrating live storage logistics across 17+ campuses.
                 </p>
                 <p class="project-desc">
                   As a lead software engineer, architected and shipped the
@@ -2111,7 +2184,7 @@
                   counselor reports at scale.
                 </p>
                 <span class="project-metric"
-                  >Presented at national TSA conference · adopted by Northern
+                  >Presented at national TSA conference · backed by Northern
                   Burlington HS</span
                 >
                 <div class="chip-row">
@@ -2357,10 +2430,20 @@
               >
             </div>
             <div class="honor-row">
-              <span class="honor-name">Stamps Scholarship, Georgia Tech</span
+              <span class="honor-name">Stamps Scholarship</span
               ><span class="honor-result"
-                >1 of 430 national semifinalists — top 1%</span
+                >1 of 430 national semifinalists at Georgia Tech — top 1%</span
               >
+            </div>
+            <div class="honor-row">
+              <span class="honor-name">DECA International Finalist (2x)</span
+              ><span class="honor-result"
+                >Top 10 in world, business consulting competition</span
+              >
+            </div>
+            <div class="honor-row">
+              <span class="honor-name">Eagle Scout</span
+              ><span class="honor-result">Top 4% nationally of all scouts</span>
             </div>
           </div>
         </div>
@@ -2374,29 +2457,47 @@
             <span class="skill-pill">Python</span
             ><span class="skill-pill">TypeScript</span
             ><span class="skill-pill">C++</span
+            ><span class="skill-pill">Java</span
             ><span class="skill-pill">Rust</span
-            ><span class="skill-pill">Go</span
-            ><span class="skill-pill">SQL</span
-            ><span class="skill-pill">Java</span>
+            ><span class="skill-pill">Go</span>
           </div>
+
           <div class="skills-group">
-            <span class="skills-group-label">Frameworks &amp; ML</span>
+            <span class="skills-group-label">Full-stack</span>
             <span class="skill-pill">React / Next.js</span
-            ><span class="skill-pill">React Native</span
             ><span class="skill-pill">SvelteKit</span
             ><span class="skill-pill">Node / Express</span
-            ><span class="skill-pill">PyTorch</span
-            ><span class="skill-pill">Scikit-learn</span
-            ><span class="skill-pill">OpenCV</span>
+            ><span class="skill-pill">REST APIs</span
+            ><span class="skill-pill">OAuth</span
+            ><span class="skill-pill">WebSockets</span>
           </div>
+
+          <div class="skills-group">
+            <span class="skills-group-label">AI / ML</span>
+            <span class="skill-pill">PyTorch</span
+            ><span class="skill-pill">Scikit-learn</span
+            ><span class="skill-pill">NumPy</span
+            ><span class="skill-pill">Pandas</span
+            ><span class="skill-pill">OpenCV</span
+            ><span class="skill-pill">SymPy</span
+            ><span class="skill-pill">Behavior-tree</span
+            ><span class="skill-pill">LLM fine-tuning</span>
+          </div>
+
           <div class="skills-group">
             <span class="skills-group-label">Infrastructure</span>
             <span class="skill-pill">Firebase / GCP</span
-            ><span class="skill-pill">AWS</span
-            ><span class="skill-pill">WebSockets</span
-            ><span class="skill-pill">LLM fine-tuning</span
-            ><span class="skill-pill">OAuth</span
-            ><span class="skill-pill">Git / Linux</span>
+            ><span class="skill-pill">AWS (S3 &amp; EC2)</span
+            ><span class="skill-pill">Git</span
+            ><span class="skill-pill">Linux</span>
+          </div>
+
+          <div class="skills-group">
+            <span class="skills-group-label">Techniques</span>
+            <span class="skill-pill">Parallel computing</span
+            ><span class="skill-pill">Graph algorithms</span
+            ><span class="skill-pill">Statistical benchmarking</span
+            ><span class="skill-pill">Data-driven optimization</span>
           </div>
         </div>
       </div>
@@ -2694,7 +2795,7 @@
             href: "#projects",
           },
           {
-            label: "Projects — Dorm To Door",
+            label: "Projects — Dorm to Door",
             tag: "project",
             href: "#dormToDoor",
           },
@@ -3064,6 +3165,20 @@
           );
           eqObs.observe(eqCanvas);
         }
+
+        document.querySelectorAll(".research-toggle").forEach((toggle) => {
+          toggle.addEventListener("click", () => {
+            const card = toggle.closest(".research-card");
+
+            card.classList.toggle("open");
+
+            toggle.querySelector("span").textContent = card.classList.contains(
+              "open",
+            )
+              ? "Hide technical details"
+              : "Read technical details";
+          });
+        });
       })();
     </script>
   </body>
