@@ -974,6 +974,62 @@
         max-width: 680px;
         margin-bottom: 22px;
       }
+      .research-summary,
+      .project-summary {
+        color: var(--ink-dim);
+        font-size: 14.5px;
+        max-width: 720px;
+        margin-bottom: 14px;
+      }
+      .expandable-details {
+        margin-top: 16px;
+        margin-bottom: 22px;
+        padding: 0;
+        background: var(--bg-2);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      }
+      .expandable-details summary {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--accent);
+        user-select: none;
+        padding: 16px 18px;
+      }
+      .expandable-details summary::-webkit-details-marker {
+        display: none;
+      }
+      .expandable-details summary::after {
+        content: "+";
+        font-size: 15px;
+        line-height: 1;
+        color: var(--accent);
+        transition: transform 0.25s var(--ease);
+      }
+      .expandable-details[open] summary::after {
+        content: "−";
+      }
+      .expandable-details .detail-copy {
+        color: var(--ink-dim);
+        font-size: 14.5px;
+        margin-top: 0;
+        padding: 12px 18px 16px;
+        max-width: 720px;
+      }
+      .expandable-details summary + .detail-copy {
+        padding-top: 12px;
+      }
+      .expandable-details[open] summary {
+        border-bottom: 1px solid var(--line);
+      }
       .chip-row {
         display: flex;
         flex-wrap: wrap;
@@ -1682,27 +1738,24 @@
               </h2>
               <div class="about-copy" style="margin-top: 28px">
                 <p>
-                  Prasham studies
-                  <strong
-                    >Computer Science and Mathematics at Harvard College</strong
-                  >. His work sits at the intersection of ML research and
-                  full-stack engineering — trained on real datasets, shipped to
-                  real users.
+                  I study <strong>Computer Science and Mathematics at Harvard
+                  College</strong>. My work sits at the intersection of ML
+                  research and full-stack engineering — trained on real
+                  datasets, shipped to real users.
                 </p>
                 <p>
-                  On the research side, he's first author on an
-                  <strong>IEEE paper and conference poster</strong> discovering
-                  human-readable equations from physics data, awarded
-                  <strong>Best Poster at MIT URTC</strong> among roughly 700
-                  total submissions. On the engineering side, he's led a team to
+                  On the research side, I am first author on an
+                  <strong>IEEE paper and conference poster</strong> about
+                  discovering human-readable equations from physics data, which
+                  won <strong>Best Poster at MIT URTC</strong> among roughly 700
+                  submissions. On the engineering side, I led a team to
                   <strong>1st place at Empower Hacks 2.0</strong>, shipped a
                   production summer-storage platform live at 17+ college
-                  campuses, and grown a game he built solo to 200+ daily
-                  players.
+                  campuses, and grew a game I built solo to 200+ daily players.
                 </p>
                 <p class="ask">
-                  He's currently looking for research and engineering
-                  internships — reach out below.
+                  I'm currently looking for research and engineering internships
+                  — reach out below.
                 </p>
               </div>
             </div>
@@ -1774,36 +1827,45 @@
               >
             </div>
             <p class="research-lede">
-              "Teaching AI to discover human-readable equations directly from
-              raw physics data — not just predict, but explain."
+               "Can artificial neural networks, combined with physical intuition about symmetry and invariance, discover physics laws better?"
+            </h2>
             </p>
-            <p class="research-body">
-              Prasham led the CS research team on this project and
-              first-authored both the resulting IEEE paper, first presented at
-              the David Miyamoto Scholars Conference, and a distilled poster,
-              awarded Best Poster at IEEE MIT URTC among roughly 700 total
-              conference submissions. The team replicated Udrescu &amp;
-              Tegmark's
-              <em>AI Feynman</em> (2020) from scratch — regression, functional
-              feature expansion, and symmetry detection — to expose its core
-              mechanisms, then extended it to address two problems the original
-              left unresolved: noisy data and variable numerical scales. Testing
-              on synthetic physics datasets with Gaussian noise, the system
-              rediscovered equations with near-perfect accuracy at zero noise
-              (R² ≈ 1.00 for most physics-derived equations) but degraded
-              sharply as noise increased, falling to R² ≈ 0.49 at σ = 0.2 and
-              collapsing below zero at σ = 0.4, with failures showing up as
-              either underfitting or bloated, spurious equations. Prasham's most
-              significant contribution — a novel
-              <strong style="color: var(--ink)">adaptive-α rule</strong> that
-              scales symmetry-detection thresholds to each dataset's
-              distribution — nearly doubled true symmetry detections (60 → 110)
-              while cutting false positives
-              <strong style="color: var(--accent)">tenfold (29 → 3)</strong>,
-              with the largest gains at small numerical ranges. This key
-              improvement makes the technology much more useful for cutting-edge
-              science.
+            <p class="research-summary">
+              I led the CS research side of this project and first-authored the
+              resulting IEEE paper and poster. We rebuilt AI Feynman from
+              scratch to understand its core mechanics, then extended it with
+              an adaptive threshold rule that made symmetry detection far more
+              reliable on noisy, scale-varying data. The poster won Best Poster
+              at IEEE MIT URTC among roughly 700 submissions.
             </p>
+            <details class="expandable-details">
+              <summary>Full summary</summary>
+              <div class="detail-copy">
+                <p>
+                  The team replicated Udrescu &amp; Tegmark's <em>AI Feynman</em>
+                  (2020) from scratch — regression, functional feature
+                  expansion, and symmetry detection — to expose its core
+                  mechanisms, then extended it to address two problems the
+                  original left unresolved: noisy data and variable numerical
+                  scales. Testing on synthetic physics datasets with Gaussian
+                  noise, the system rediscovered equations with near-perfect
+                  accuracy at zero noise (R² ≈ 1.00 for most physics-derived
+                  equations) but degraded sharply as noise increased, falling to
+                  R² ≈ 0.49 at σ = 0.2 and collapsing below zero at σ = 0.4,
+                  with failures showing up as either underfitting or bloated,
+                  spurious equations.
+                </p>
+                <p style="margin-top: 12px">
+                  My most significant contribution was a novel
+                  <strong style="color: var(--ink)">adaptive-α rule</strong>
+                  that scales symmetry-detection thresholds to each dataset's
+                  distribution. It nearly doubled true symmetry detections
+                  (60 → 110) while cutting false positives
+                  <strong style="color: var(--accent)">tenfold (29 → 3)</strong>,
+                  with the largest gains at small numerical ranges.
+                </p>
+              </div>
+            </details>
             <div class="chip-row">
               <span class="chip">Python</span><span class="chip">PyTorch</span
               ><span class="chip">SymPy</span
@@ -1842,30 +1904,32 @@
               "If you misspell a word or your camera is a little noisy, does the
               model still get it right?"
             </p>
-            <p class="research-body">
-              Prasham independently studied a question that hadn't yet been
-              examined in the literature: while the noise resistance of
-              classification models and text-only LLMs was known, no one had
-              measured it for multimodal LLMs (MLLMs). He tested two MLLMs
-              (GPT-4o and LLaVA) against textual noise (misspellings) and image
-              noise (Gaussian, salt-and-pepper, and speckle), alongside a
-              text-only baseline (GPT-3.5), across 10 textual and 30 image-based
-              prompts — each run clean, noised, and denoised (via
-              <em>aspell</em> for text, OpenCV's Fast NL Means for images). The
-              hypothesis that MLLMs would show worse noise resistance than a
-              traditional LLM was supported: MLLMs degraded significantly more
-              on noisy text than GPT-3.5 did (p=0.025), with the smaller model
-              (LLaVA) hit hardest (p=0.048). The second hypothesis — that
-              denoising would help — was refuted: classical denoising
-              significantly <strong style="color: var(--ink)">hurt</strong> text
-              performance instead of improving it (p=0.010), and showed no
-              reliable benefit on images either. A secondary, non-central
-              finding suggested lower-parameter models fare worse under noise,
-              consistent with the LLaVA result, though the study wasn't designed
-              to isolate model size as a variable. The practical takeaway: MLLM
-              users should focus on writing clean prompts up front rather than
-              leaning on traditional algorithmic denoisers.
+            <p class="research-summary">
+              I independently studied how multimodal LLMs handle noisy inputs,
+              then compared GPT-4o, LLaVA, and GPT-3.5 across misspellings and
+              several image-noise regimes. The key result was counterintuitive:
+              denoising text before model input often made answers worse, not
+              better, and MLLMs were generally more sensitive to noisy text than
+              GPT-3.5. The study was published via Cambridge Open Engage.
             </p>
+            <details class="expandable-details">
+              <summary>Full summary</summary>
+              <div class="detail-copy">
+                <p>
+                  I tested 10 text prompts and 30 image prompts, each clean,
+                  noised, and denoised with <em>aspell</em> or OpenCV Fast NL
+                  Means. The data supported the hypothesis that MLLMs degrade
+                  more than traditional text models under noisy text (p=0.025),
+                  with LLaVA hit hardest (p=0.048).
+                </p>
+                <p style="margin-top: 12px">
+                  The denoising hypothesis was rejected: classical denoising
+                  significantly hurt text performance (p=0.010) and didn't
+                  deliver a reliable image benefit, suggesting users should
+                  prioritize clean prompts over algorithmic cleanup.
+                </p>
+              </div>
+            </details>
             <div class="chip-row">
               <span class="chip">Multimodal LLMs</span
               ><span class="chip">OpenCV</span
@@ -1982,18 +2046,25 @@
               <div class="project-content">
                 <span class="project-index">01 — Professional scaling</span>
                 <h3>Dorm To Door Student Storage</h3>
-                <p class="project-pitch">
-                  Full-stack platform running live storage logistics for 17+
-                  campuses.
+                <p class="project-summary">
+                  I helped architect and ship the production platform that runs
+                  storage logistics for 17+ campuses. The stack pairs a React
+                  Native app with a Firebase/Node backend and a graph-based
+                  routing system for multi-stop pickup and delivery. It stayed
+                  live across the full 2025 storage season.
                 </p>
-                <p class="project-desc">
-                  As a lead software engineer, architected and shipped the
-                  full-stack platform end to end — a React Native frontend, a
-                  Firebase/Node backend handling auth, admin tools, and
-                  real-time sync, and a graph-based route-optimization system
-                  for coordinating complex multi-stop pickup and delivery
-                  schedules.
-                </p>
+                <details class="expandable-details">
+                  <summary>Full summary</summary>
+                  <div class="detail-copy">
+                    <p>
+                      As a lead software engineer, I built the full-stack
+                      platform end to end: auth, admin tools, real-time sync,
+                      and route optimization. The system coordinated complex
+                      multi-stop schedules and shipped into production across
+                      the full 2025 storage season.
+                    </p>
+                  </div>
+                </details>
                 <span class="project-metric"
                   >Live in production across the full 2025 storage season</span
                 >
@@ -2042,18 +2113,26 @@
               <div class="project-content">
                 <span class="project-index">02 — Hackathon success</span>
                 <h3>Legal Lieutenant</h3>
-                <p class="project-pitch">
-                  An AI legal assistant for immigrants navigating paperwork
-                  alone.
+                <p class="project-summary">
+                  I led the team that built an AI legal assistant for immigrants
+                  and low-income students navigating paperwork alone. It helps
+                  with immigration forms, rental agreements, employment
+                  documents, and FAFSA, combining a custom document-chunking
+                  pipeline with a fine-tuned GPT layer for Q&amp;A and
+                  summarization. The project won 1st place at Empower Hacks 2.0.
                 </p>
-                <p class="project-desc">
-                  Led a team to build an assistant that helps immigrants and
-                  low-income students through immigration forms, rental
-                  agreements, employment documents, and FAFSA — with a custom
-                  NLP pipeline for chunking dense legal documents and a
-                  fine-tuned GPT layer for domain-specific Q&amp;A and
-                  summarization.
-                </p>
+                <details class="expandable-details">
+                  <summary>Full summary</summary>
+                  <div class="detail-copy">
+                    <p>
+                      We designed the assistant to make dense paperwork more
+                      approachable by breaking documents into manageable chunks
+                      and tailoring responses to the user's context. I led the
+                      team through the build, and the project placed first out
+                      of 2,000 competitors in a $210K prize pool.
+                    </p>
+                  </div>
+                </details>
                 <span class="project-metric"
                   >🏆 1st place · Empower Hacks 2.0 · 2,000 competitors · $210K
                   prize pool</span
@@ -2100,16 +2179,27 @@
               <div class="project-content">
                 <span class="project-index">03 — School-backed initiative</span>
                 <h3>SocialScanner</h3>
-                <p class="project-pitch">
-                  A privacy-first ML screener for student mental health.
+                <p class="project-summary">
+                  I built this with a partner as a privacy-first screener for
+                  early mental-health warning signs in schools. The architecture
+                  keeps grade trends, social-media activity, and counselor notes
+                  separate so schools can activate only the signals they need,
+                  while parallel processing lets counselor reports scale. It was
+                  presented at a national TSA conference and adopted by
+                  Northern Burlington HS.
                 </p>
-                <p class="project-desc">
-                  Built with a partner to analyze grade trends, social-media
-                  activity, and counselor notes for early warning signs — using
-                  a one-model-per-metric architecture so schools can activate
-                  only the signals they need, and parallel computing to generate
-                  counselor reports at scale.
-                </p>
+                <details class="expandable-details">
+                  <summary>Full summary</summary>
+                  <div class="detail-copy">
+                    <p>
+                      The system used one model per metric, which made it easier
+                      to reason about privacy and deployment tradeoffs.
+                      Parallel computing generated counselor reports at scale,
+                      and the project was presented nationally before being
+                      adopted by Northern Burlington HS.
+                    </p>
+                  </div>
+                </details>
                 <span class="project-metric"
                   >Presented at national TSA conference · adopted by Northern
                   Burlington HS</span
@@ -2173,16 +2263,26 @@
               <div class="project-content">
                 <span class="project-index">04 — Organic growth</span>
                 <h3>Ultra Ball</h3>
-                <p class="project-pitch">
-                  A real-time multiplayer game built solo, from the socket up.
+                <p class="project-summary">
+                  I built a real-time multiplayer game solo, starting from the
+                  WebSocket server instead of the client. The server handles 15+
+                  player moves, bot opponents with behavior-tree personalities,
+                  and automated lobby lifecycle, while the SvelteKit client
+                  stays lightweight. It reached 200+ daily active users
+                  organically within months of launch.
                 </p>
-                <p class="project-desc">
-                  A fully custom, client-agnostic WebSocket server resolves
-                  interactions between 15+ distinct player moves, manages bot
-                  opponents with randomized behavior-tree personalities, and
-                  automates lobby lifecycle — paired with a lightweight
-                  SvelteKit + TypeScript client.
-                </p>
+                <details class="expandable-details">
+                  <summary>Full summary</summary>
+                  <div class="detail-copy">
+                    <p>
+                      The custom, client-agnostic WebSocket backend resolves
+                      interactions, manages bot behavior, and automates the
+                      game loop without depending on a specific frontend. I
+                      paired that with a SvelteKit + TypeScript client and grew
+                      the game to 200+ daily active users organically.
+                    </p>
+                  </div>
+                </details>
                 <span class="project-metric"
                   >200+ daily active users, reached organically within months of
                   launch</span
@@ -2238,16 +2338,26 @@
               <div class="project-content">
                 <span class="project-index">05 — 4-year build</span>
                 <h3>FIRST Tech Challenge — Team 5387</h3>
-                <p class="project-pitch">
-                  Captain &amp; Lead Programmer, four seasons running.
+                <p class="project-summary">
+                  I captained Team 5387 for four seasons and built the
+                  autonomous routine that set our scoring record. The code
+                  combined PID control, OpenCV vision, and lightweight ML on
+                  sub-$100 Android hardware, and I also handled CAD,
+                  3D-printing, sponsorship, and rookie mentoring. The team
+                  earned the Inspire Award.
                 </p>
-                <p class="project-desc">
-                  Wrote the autonomous routine — combining PID control, OpenCV
-                  vision, and lightweight ML — that ran on sub-$100 embedded
-                  Android hardware and set a team scoring record. Designed and
-                  3D-printed custom parts via CAD, secured over $15K in
-                  sponsorship, and mentored a rookie team.
-                </p>
+                <details class="expandable-details">
+                  <summary>Full summary</summary>
+                  <div class="detail-copy">
+                    <p>
+                      I wrote the autonomous routine that ran on embedded
+                      Android hardware and combined PID control, OpenCV vision,
+                      and lightweight ML. Beyond software, I designed and
+                      3D-printed custom parts, raised over $15K in sponsorship,
+                      and mentored a rookie team.
+                    </p>
+                  </div>
+                </details>
                 <span class="project-metric"
                   >🏆 Inspire Award (highest team honor) · record-setting
                   autonomous run</span
