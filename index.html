@@ -1,0 +1,3070 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("ps-theme");
+          var theme =
+            saved ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {}
+      })();
+    </script>
+    <title>
+      Prasham Shah — CS + Math @ Harvard, ML Researcher &amp; Builder
+    </title>
+    <meta
+      name="description"
+      content="Prasham Shah — CS + Math at Harvard College. ML researcher (Best Poster, IEEE MIT URTC) and full-stack engineer (1st place, Empower Hacks 2.0)."
+    />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0e13'/%3E%3Cpath d='M8 44 C 18 44, 20 20, 32 20 S 46 44, 56 44' fill='none' stroke='%23e8a33d' stroke-width='4' stroke-linecap='round'/%3E%3Ccircle cx='14' cy='40' r='2.4' fill='%23e8a33d'/%3E%3Ccircle cx='24' cy='27' r='2.4' fill='%23e8a33d'/%3E%3Ccircle cx='40' cy='27' r='2.4' fill='%23e8a33d'/%3E%3Ccircle cx='50' cy='40' r='2.4' fill='%23e8a33d'/%3E%3C/svg%3E"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ============ TOKENS ============ */
+      :root {
+        --bg: #0a0e13;
+        --bg-1: #10151c;
+        --bg-2: #161d26;
+        --ink: #eae7de;
+        --ink-dim: #a4acb8;
+        --muted: #63707f;
+        --accent: #e8a33d;
+        --accent-2: #f2c46d;
+        --accent-soft: rgba(232, 163, 61, 0.13);
+        --accent-soft-2: rgba(232, 163, 61, 0.06);
+        --line: rgba(234, 231, 222, 0.09);
+        --line-strong: rgba(234, 231, 222, 0.16);
+        --shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.55);
+        --serif: "Fraunces", Georgia, serif;
+        --sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+        --mono: "IBM Plex Mono", "SF Mono", Consolas, monospace;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+        --maxw: 1180px;
+      }
+      [data-theme="light"] {
+        --bg: #f2f1ec;
+        --bg-1: #e9e7e0;
+        --bg-2: #e0ddd4;
+        --ink: #191712;
+        --ink-dim: #4c4a44;
+        --muted: #7a776e;
+        --accent: #b9761f;
+        --accent-2: #935c14;
+        --accent-soft: rgba(185, 118, 31, 0.12);
+        --accent-soft-2: rgba(185, 118, 31, 0.05);
+        --line: rgba(25, 23, 18, 0.09);
+        --line-strong: rgba(25, 23, 18, 0.18);
+        --shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.18);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding: 100px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        * {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--sans);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        transition:
+          background 0.4s var(--ease),
+          color 0.4s var(--ease);
+      }
+      img,
+      svg {
+        display: block;
+        max-width: 100%;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      ul {
+        list-style: none;
+      }
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        background: none;
+        border: none;
+        color: inherit;
+      }
+      ::selection {
+        background: var(--accent);
+        color: #0a0e13;
+      }
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 32px;
+      }
+      @media (max-width: 640px) {
+        .wrap {
+          padding: 0 20px;
+        }
+      }
+
+      :focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+        border-radius: 2px;
+      }
+
+      /* eyebrow / labels */
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 500;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 22px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--serif);
+        font-weight: 600;
+        letter-spacing: -0.01em;
+        color: var(--ink);
+      }
+
+      /* ============ CURSOR (desktop only) ============ */
+      .cursor-dot {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--accent);
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.25s var(--spring),
+          height 0.25s var(--spring),
+          background 0.25s;
+        mix-blend-mode: difference;
+      }
+      .cursor-ring {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1px solid var(--accent);
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition:
+          width 0.3s var(--spring),
+          height 0.3s var(--spring),
+          opacity 0.3s,
+          transform 0.12s linear;
+        opacity: 0.55;
+      }
+      @media (pointer: coarse) {
+        .cursor-dot,
+        .cursor-ring {
+          display: none;
+        }
+      }
+
+      /* ============ NAV ============ */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 500;
+        border-bottom: 1px solid transparent;
+        transition:
+          border-color 0.4s var(--ease),
+          background 0.4s var(--ease),
+          backdrop-filter 0.4s;
+      }
+      .nav.scrolled {
+        background: color-mix(in srgb, var(--bg) 82%, transparent);
+        backdrop-filter: blur(14px) saturate(140%);
+        border-bottom-color: var(--line);
+      }
+      .nav-inner {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 16px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      @media (max-width: 640px) {
+        .nav-inner {
+          padding: 14px 20px;
+        }
+      }
+      .nav-mark {
+        font-family: var(--mono);
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0.02em;
+        display: flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .nav-mark .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 12px var(--accent);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+      .nav-links a {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--ink-dim);
+        position: relative;
+        padding: 4px 0;
+        transition: color 0.25s;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        background: var(--accent);
+        transition: width 0.3s var(--ease);
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--ink);
+      }
+      .nav-links a:hover::after,
+      .nav-links a.active::after {
+        width: 100%;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+      .icon-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--ink-dim);
+        border: 1px solid var(--line);
+        transition: all 0.25s var(--ease);
+      }
+      .icon-btn:hover {
+        color: var(--ink);
+        border-color: var(--line-strong);
+        background: var(--bg-1);
+      }
+      .kbd-hint {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 2px 6px;
+      }
+      .nav-resume {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        padding: 8px 16px;
+        border: 1px solid var(--line-strong);
+        border-radius: 8px;
+        color: var(--ink);
+        transition: all 0.25s var(--ease);
+        white-space: nowrap;
+      }
+      .nav-resume:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #12100a;
+      }
+      .hamburger {
+        display: none;
+        width: 34px;
+        height: 34px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+      }
+      .hamburger span {
+        display: block;
+        width: 15px;
+        height: 1px;
+        background: var(--ink);
+        position: relative;
+      }
+      .hamburger span::before,
+      .hamburger span::after {
+        content: "";
+        position: absolute;
+        width: 15px;
+        height: 1px;
+        background: var(--ink);
+        left: 0;
+        transition: transform 0.3s var(--ease);
+      }
+      .hamburger span::before {
+        top: -5px;
+      }
+      .hamburger span::after {
+        top: 5px;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0 0 0 0;
+        top: 64px;
+        z-index: 490;
+        background: var(--bg);
+        display: none;
+        flex-direction: column;
+        padding: 24px 20px;
+        gap: 4px;
+        transform: translateY(-8px);
+        opacity: 0;
+        transition:
+          transform 0.3s var(--ease),
+          opacity 0.3s var(--ease);
+      }
+      .mobile-menu.open {
+        display: flex;
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .mobile-menu a {
+        font-family: var(--mono);
+        font-size: 19px;
+        padding: 14px 4px;
+        border-bottom: 1px solid var(--line);
+        color: var(--ink);
+      }
+
+      @media (max-width: 860px) {
+        .nav-links {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+      }
+
+      /* ============ COMMAND PALETTE ============ */
+      .cmdk-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(6, 8, 11, 0.6);
+        backdrop-filter: blur(4px);
+        display: none;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 14vh;
+      }
+      .cmdk-overlay.open {
+        display: flex;
+        animation: fadeIn 0.18s var(--ease);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .cmdk-box {
+        width: min(560px, 90vw);
+        background: var(--bg-1);
+        border: 1px solid var(--line-strong);
+        border-radius: 14px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        animation: cmdkIn 0.25s var(--spring);
+      }
+      @keyframes cmdkIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .cmdk-input-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 16px 18px;
+        border-bottom: 1px solid var(--line);
+      }
+      .cmdk-input-row svg {
+        flex-shrink: 0;
+        color: var(--muted);
+      }
+      .cmdk-input {
+        background: none;
+        border: none;
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 15px;
+        flex: 1;
+        outline: none;
+      }
+      .cmdk-input::placeholder {
+        color: var(--muted);
+      }
+      .cmdk-esc {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 2px 6px;
+      }
+      .cmdk-list {
+        max-height: 320px;
+        overflow-y: auto;
+        padding: 8px;
+      }
+      .cmdk-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 11px 12px;
+        border-radius: 8px;
+        font-family: var(--sans);
+        font-size: 14px;
+        color: var(--ink-dim);
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .cmdk-item .l {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+      }
+      .cmdk-item .tag {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+      .cmdk-item.active,
+      .cmdk-item:hover {
+        background: var(--accent-soft);
+        color: var(--ink);
+      }
+      .cmdk-item.active .tag,
+      .cmdk-item:hover .tag {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      /* ============ HERO ============ */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding: 120px 0 40px;
+      }
+      .hero-canvas-wrap {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        opacity: 0.22;
+        mask-image: linear-gradient(to bottom, black 40%, transparent 85%);
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          black 40%,
+          transparent 85%
+        );
+      }
+      #heroCanvas {
+        width: 100%;
+        height: 100%;
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+      .hero-eq {
+        position: absolute;
+        z-index: 3;
+        font-family: var(--mono);
+        font-size: 14px;
+        color: var(--accent-2);
+        opacity: 0;
+        letter-spacing: 0.02em;
+        pointer-events: none;
+        text-shadow: 0 0 18px var(--accent-soft);
+      }
+      .hero-kicker {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+        opacity: 0;
+        animation: riseIn 0.8s var(--ease) 0.1s forwards;
+      }
+      .hero h1 {
+        font-size: clamp(2.6rem, 7vw, 5.4rem);
+        line-height: 0.98;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        opacity: 0;
+        animation: riseIn 0.9s var(--ease) 0.22s forwards;
+      }
+      .hero-role-row {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin-top: 20px;
+        font-family: var(--mono);
+        font-size: clamp(1.05rem, 2.6vw, 1.5rem);
+        color: var(--ink-dim);
+        opacity: 0;
+        animation: riseIn 0.9s var(--ease) 0.38s forwards;
+      }
+      .hero-role-row .bracket {
+        color: var(--muted);
+      }
+      #roleText {
+        color: var(--accent);
+        font-weight: 500;
+        position: relative;
+      }
+      #roleText::after {
+        content: "▍";
+        margin-left: 2px;
+        color: var(--accent);
+        animation: blink 1s steps(1) infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+      .hero-sub {
+        max-width: 560px;
+        margin-top: 32px;
+        font-size: 17px;
+        color: var(--ink-dim);
+        line-height: 1.7;
+        opacity: 0;
+        animation: riseIn 0.9s var(--ease) 0.5s forwards;
+      }
+      .hero-sub strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      @keyframes riseIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .proof-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 28px;
+        margin-top: 38px;
+        padding-top: 26px;
+        border-top: 1px solid var(--line);
+        opacity: 0;
+        animation: riseIn 0.9s var(--ease) 0.66s forwards;
+        max-width: 760px;
+      }
+      .proof-item {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .proof-item .pv {
+        color: var(--ink-dim);
+        font-weight: 500;
+      }
+      .proof-item svg {
+        color: var(--accent);
+        flex-shrink: 0;
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-top: 40px;
+        opacity: 0;
+        animation: riseIn 0.9s var(--ease) 0.8s forwards;
+      }
+      .btn {
+        position: relative;
+        font-family: var(--mono);
+        font-size: 13.5px;
+        padding: 13px 22px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        transition:
+          transform 0.2s var(--spring),
+          background 0.25s,
+          border-color 0.25s,
+          color 0.25s;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #14110a;
+        font-weight: 600;
+      }
+      .btn-primary:hover {
+        background: var(--accent-2);
+      }
+      .btn-ghost {
+        border: 1px solid var(--line-strong);
+        color: var(--ink);
+      }
+      .btn-ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-soft-2);
+      }
+      .btn svg {
+        transition: transform 0.25s var(--spring);
+      }
+      .btn:hover svg {
+        transform: translate(3px, -3px);
+      }
+
+      .scroll-cue {
+        margin: 32px auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        opacity: 0;
+        animation: riseIn 0.9s var(--ease) 1.05s forwards;
+      }
+      .scroll-cue .line {
+        width: 1px;
+        height: 34px;
+        background: linear-gradient(var(--muted), transparent);
+        animation: scrollLine 2s var(--ease) infinite;
+      }
+      @keyframes scrollLine {
+        0% {
+          transform: scaleY(0);
+          transform-origin: top;
+        }
+        50% {
+          transform: scaleY(1);
+          transform-origin: top;
+        }
+        50.01% {
+          transform-origin: bottom;
+        }
+        100% {
+          transform: scaleY(0);
+          transform-origin: bottom;
+        }
+      }
+      .scroll-cue span {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--muted);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      /* ============ SECTION SCAFFOLD ============ */
+      section {
+        padding: 130px 0;
+        position: relative;
+      }
+      @media (max-width: 760px) {
+        section {
+          padding: 88px 0;
+        }
+      }
+      .section-head {
+        margin-bottom: 64px;
+        max-width: 640px;
+      }
+      .section-head h2 {
+        font-size: clamp(1.9rem, 4vw, 2.7rem);
+        margin-top: 16px;
+      }
+      .section-head p {
+        color: var(--ink-dim);
+        margin-top: 16px;
+        font-size: 15.5px;
+        max-width: 540px;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.8s var(--ease),
+          transform 0.8s var(--ease);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .stagger > * {
+        transition-delay: calc(var(--i, 0) * 90ms);
+      }
+
+      /* ============ ABOUT ============ */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 80px;
+        align-items: start;
+      }
+      @media (max-width: 900px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 48px;
+        }
+      }
+      .about-copy p {
+        color: var(--ink-dim);
+        font-size: 16.5px;
+        margin-bottom: 20px;
+        max-width: 520px;
+      }
+      .about-copy strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .about-copy .ask {
+        color: var(--ink);
+        font-style: italic;
+        font-family: var(--serif);
+        font-size: 18px;
+        margin-top: 28px;
+      }
+
+      .profile-photo {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 36px;
+        position: relative;
+        border-radius: 50%;
+        overflow: hidden;
+        background: var(--bg-1);
+        box-shadow: 0 8px 24px var(--accent-soft);
+      }
+      .profile-photo::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        pointer-events: none;
+        box-shadow:
+          inset 0 0 0 3px var(--bg),
+          inset 0 0 0 4px var(--accent);
+      }
+      .profile-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .fact-card {
+        background: var(--bg-1);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 30px;
+      }
+      .fact-block {
+        margin-bottom: 26px;
+      }
+      .fact-block:last-child {
+        margin-bottom: 0;
+      }
+      .fact-label {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 10px;
+        display: block;
+      }
+      .fact-value {
+        font-size: 14.5px;
+        color: var(--ink-dim);
+        line-height: 1.65;
+      }
+      .fact-value strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+      .lang-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        margin-top: 36px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+      }
+      .lang-item {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .lang-item b {
+        color: var(--ink-dim);
+        font-weight: 500;
+      }
+
+      /* ============ RESEARCH ============ */
+      .research-card {
+        background: var(--bg-1);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 44px;
+        margin-bottom: 28px;
+        position: relative;
+        overflow: hidden;
+      }
+      .research-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent),
+          transparent
+        );
+        opacity: 0.5;
+      }
+      @media (max-width: 640px) {
+        .research-card {
+          padding: 28px 22px;
+        }
+      }
+      .research-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 22px;
+      }
+      .research-badge {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--accent);
+        border: 1px solid var(--accent);
+        border-radius: 100px;
+        padding: 6px 14px;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        white-space: nowrap;
+      }
+      .research-card h3 {
+        font-size: 1.65rem;
+        margin-bottom: 6px;
+      }
+      .research-meta {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .research-lede {
+        font-size: 16.5px;
+        color: var(--ink);
+        margin: 20px 0 14px;
+        font-family: var(--serif);
+        font-style: italic;
+        max-width: 640px;
+      }
+      .research-body {
+        color: var(--ink-dim);
+        font-size: 15px;
+        max-width: 680px;
+        margin-bottom: 22px;
+      }
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .chip {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--ink-dim);
+        background: var(--bg-2);
+        border: 1px solid var(--line);
+        padding: 5px 11px;
+        border-radius: 7px;
+      }
+      .research-viz {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+        margin-top: 30px;
+        align-items: center;
+      }
+      @media (max-width: 760px) {
+        .research-viz {
+          grid-template-columns: 1fr;
+        }
+      }
+      .eq-viz {
+        background: var(--bg-2);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 22px;
+        height: 220px;
+        position: relative;
+        overflow: hidden;
+      }
+      .chart-viz {
+        background: var(--bg-2);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 24px 22px 16px;
+      }
+      .chart-caption {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--muted);
+        margin-top: 12px;
+        line-height: 1.5;
+      }
+      .bar-group-label {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 14px 0 10px;
+        opacity: 0.85;
+      }
+      .bar-group-label:first-child {
+        margin-top: 0;
+      }
+      .bar-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .bar-label {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink-dim);
+        width: 118px;
+        flex-shrink: 0;
+      }
+      .bar-track {
+        flex: 1;
+        height: 9px;
+        background: var(--bg);
+        border-radius: 5px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        position: relative;
+      }
+      .bar-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        border-radius: 5px;
+        transition: width 1.1s var(--ease);
+      }
+      .bar-row.in .bar-fill {
+        width: var(--w);
+      }
+      .bar-value {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--ink);
+        width: 38px;
+        text-align: right;
+        flex-shrink: 0;
+      }
+      .research-link {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--ink-dim);
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        margin-top: 6px;
+      }
+      .research-link:hover {
+        color: var(--accent);
+      }
+
+      /* ============ PROJECTS ============ */
+      .project-card {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 0;
+        margin-bottom: 24px;
+        overflow: hidden;
+        transition:
+          border-color 0.35s var(--ease),
+          transform 0.35s var(--spring),
+          box-shadow 0.35s var(--ease);
+        background: var(--bg-1);
+        position: relative;
+      }
+      .project-card:hover {
+        border-color: var(--line-strong);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow);
+      }
+      .project-grid {
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 0;
+      }
+      @media (max-width: 820px) {
+        .project-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .project-visual {
+        background: var(--bg-2);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 230px;
+        overflow: hidden;
+        border-right: 1px solid var(--line);
+      }
+      @media (max-width: 820px) {
+        .project-visual {
+          border-right: none;
+          border-bottom: 1px solid var(--line);
+          min-height: 170px;
+        }
+      }
+      .project-card.reverse .project-grid {
+        direction: rtl;
+      }
+      .project-card.reverse .project-grid > * {
+        direction: ltr;
+      }
+      .project-content {
+        padding: 36px 38px;
+      }
+      @media (max-width: 640px) {
+        .project-content {
+          padding: 26px 24px;
+        }
+      }
+      .project-index {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 14px;
+        display: block;
+      }
+      .project-content h3 {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+      }
+      .project-pitch {
+        color: var(--accent);
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 15.5px;
+        margin-bottom: 16px;
+      }
+      .project-desc {
+        color: var(--ink-dim);
+        font-size: 14.5px;
+        margin-bottom: 18px;
+      }
+      .project-metric {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--ink);
+        background: var(--accent-soft);
+        border: 1px solid var(--accent);
+        display: inline-flex;
+        padding: 6px 12px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .project-links {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .project-links a {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--ink-dim);
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition: color 0.2s;
+      }
+      .project-links a:hover {
+        color: var(--accent);
+      }
+
+      /* project visual generative motifs (pure CSS/SVG, per-project) */
+      .motif {
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
+      .motif svg {
+        width: 100%;
+        height: 100%;
+      }
+      .project-visual .glow {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at 50% 50%,
+          var(--accent-soft),
+          transparent 70%
+        );
+        opacity: 0.7;
+      }
+
+      .other-builds {
+        margin-top: 8px;
+      }
+      .other-builds-head {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 18px;
+      }
+      .ob-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+      @media (max-width: 760px) {
+        .ob-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .ob-card {
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 20px;
+        transition:
+          border-color 0.25s,
+          transform 0.25s var(--spring);
+      }
+      .ob-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+      }
+      .ob-card .ob-lang {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--accent);
+        margin-bottom: 8px;
+        display: block;
+      }
+      .ob-card h4 {
+        font-family: var(--mono);
+        font-size: 14.5px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--ink);
+      }
+      .ob-card p {
+        font-size: 13px;
+        color: var(--ink-dim);
+        margin-bottom: 12px;
+      }
+      .ob-card a {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--muted);
+      }
+      .ob-card a:hover {
+        color: var(--accent);
+      }
+
+      /* ============ HONORS ============ */
+      .honors-list {
+        border-top: 1px solid var(--line);
+      }
+      .honor-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        padding: 22px 4px;
+        border-bottom: 1px solid var(--line);
+        transition:
+          padding-left 0.3s var(--ease),
+          background 0.3s;
+      }
+      .honor-row:hover {
+        padding-left: 14px;
+        background: var(--accent-soft-2);
+      }
+      .honor-name {
+        font-family: var(--serif);
+        font-size: 1.15rem;
+        color: var(--ink);
+      }
+      .honor-result {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--ink-dim);
+        text-align: right;
+      }
+      @media (max-width: 640px) {
+        .honor-row {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+        }
+        .honor-result {
+          text-align: left;
+        }
+      }
+      .honors-subhead {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin: 36px 0 4px;
+      }
+
+      /* ============ SKILLS STRIP ============ */
+      .skills-strip {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 40px 0;
+      }
+      .skills-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 18px;
+      }
+      .skills-group:last-child {
+        margin-bottom: 0;
+      }
+      .skills-group-label {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        width: 100%;
+        margin-bottom: 4px;
+      }
+      .skill-pill {
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--ink-dim);
+        padding: 6px 13px;
+        border: 1px solid var(--line);
+        border-radius: 100px;
+        transition: all 0.2s;
+      }
+      .skill-pill:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      /* ============ CONTACT ============ */
+      .contact-inner {
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto;
+      }
+      .contact-inner h2 {
+        font-size: clamp(2.1rem, 5vw, 3.4rem);
+      }
+      .contact-inner p {
+        color: var(--ink-dim);
+        margin-top: 20px;
+        font-size: 16px;
+      }
+      .contact-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 40px;
+      }
+      .copy-email {
+        position: relative;
+      }
+      .copy-email .toast {
+        position: absolute;
+        top: -34px;
+        left: 50%;
+        transform: translateX(-50%) translateY(6px);
+        opacity: 0;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--accent);
+        background: var(--bg-1);
+        border: 1px solid var(--accent);
+        padding: 4px 10px;
+        border-radius: 6px;
+        pointer-events: none;
+        transition: all 0.25s var(--spring);
+        white-space: nowrap;
+      }
+      .copy-email.copied .toast {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 32px 0;
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .footer-inner p {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--muted);
+      }
+      .footer-inner a {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--muted);
+        transition: color 0.2s;
+      }
+      .footer-inner a:hover {
+        color: var(--accent);
+      }
+
+      /* magnetic btn helper */
+      .magnetic {
+        will-change: transform;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ============ NAV ============ -->
+    <nav class="nav" id="siteNav">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-mark"
+          ><span class="dot"></span>PRASHAM SHAH</a
+        >
+        <div class="nav-links" id="navLinks">
+          <a href="#about" data-sec="about">About</a>
+          <a href="#research" data-sec="research">Research</a>
+          <a href="#projects" data-sec="projects">Projects</a>
+          <a href="#honors" data-sec="honors">Honors</a>
+          <a href="#contact" data-sec="contact">Contact</a>
+        </div>
+        <div class="nav-right">
+          <button
+            class="icon-btn"
+            id="cmdkTrigger"
+            title="Command palette"
+            aria-label="Open command palette"
+          >
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="7" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+          </button>
+          <button
+            class="icon-btn"
+            id="themeToggle"
+            title="Toggle theme"
+            aria-label="Toggle light/dark theme"
+          >
+            <svg
+              id="themeIcon"
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+          <a
+            href="Prasham_Shah_Resume.pdf"
+            class="nav-resume magnetic"
+            target="_blank"
+            rel="noopener"
+            >Résumé ↓</a
+          >
+          <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+            <span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
+        <a href="#honors">Honors</a>
+        <a href="#contact">Contact</a>
+        <a href="Prasham_Shah_Resume.pdf" target="_blank" rel="noopener"
+          >Résumé ↓</a
+        >
+      </div>
+    </nav>
+
+    <!-- ============ COMMAND PALETTE ============ -->
+    <div class="cmdk-overlay" id="cmdkOverlay">
+      <div class="cmdk-box">
+        <div class="cmdk-input-row">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+          <input
+            type="text"
+            class="cmdk-input"
+            id="cmdkInput"
+            placeholder="Jump to a section…"
+            autocomplete="off"
+          />
+          <span class="cmdk-esc">esc</span>
+        </div>
+        <div class="cmdk-list" id="cmdkList"></div>
+      </div>
+    </div>
+
+    <!-- ============ HERO ============ -->
+    <header class="hero reveal in" id="hero">
+      <div class="hero-canvas-wrap"><canvas id="heroCanvas"></canvas></div>
+      <div class="wrap hero-inner">
+        <div class="hero-kicker">CS + Mathematics · Harvard College</div>
+        <h1>Prasham<br />Shah</h1>
+        <div class="hero-role-row">
+          <span class="bracket">// currently:</span>
+          <span id="roleText">ML Researcher</span>
+        </div>
+        <p class="hero-sub">
+          I build systems that <strong>discover patterns in data</strong> and
+          ship <strong>real software real people use</strong> — from a
+          first-authored IEEE poster on equation discovery to a legal-aid tool
+          that placed 1st among 2,000 hackers.
+        </p>
+        <div class="proof-strip">
+          <span class="proof-item"
+            ><svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path
+                d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.1L12 16.3l-6.3 4.4L8 13.6l-6-4.4h7.6z"
+              /></svg
+            ><span class="pv">Best Poster</span>&nbsp;— IEEE MIT URTC, among
+            ~700 total submissions</span
+          >
+          <span class="proof-item"
+            ><svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path
+                d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.1L12 16.3l-6.3 4.4L8 13.6l-6-4.4h7.6z"
+              /></svg
+            ><span class="pv">1st place</span>&nbsp;— Empower Hacks 2.0 (2,000
+            competitors)</span
+          >
+          <span class="proof-item"
+            ><svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path
+                d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.1L12 16.3l-6.3 4.4L8 13.6l-6-4.4h7.6z"
+              /></svg
+            ><span class="pv">Live in production</span>&nbsp;— Dorm to Door (17+
+            colleges), Ultra Ball (organic 200+ DAU), &hellip;
+          </span>
+        </div>
+        <div class="hero-cta">
+          <a href="#research" class="btn btn-ghost magnetic"
+            >View research
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+            >
+              <path d="M7 17 17 7M7 7h10v10" /></svg
+          ></a>
+          <a href="#projects" class="btn btn-ghost magnetic"
+            >View projects
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+            >
+              <path d="M7 17 17 7M7 7h10v10" /></svg
+          ></a>
+          <a href="#contact" class="btn btn-primary magnetic"
+            >Get in touch
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+            >
+              <path d="M7 17 17 7M7 7h10v10" /></svg
+          ></a>
+        </div>
+      </div>
+      <div class="scroll-cue">
+        <span>Scroll</span>
+        <div class="line"></div>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ ABOUT ============ -->
+      <section id="about">
+        <div class="wrap">
+          <div class="about-grid">
+            <div class="reveal">
+              <div class="profile-photo">
+                <img
+                  src="profile.jpg"
+                  alt="Portrait of Prasham Shah"
+                  loading="lazy"
+                />
+              </div>
+              <div class="eyebrow">About</div>
+              <h2
+                style="margin-top: 16px; font-size: clamp(1.9rem, 4vw, 2.6rem)"
+              >
+                Researcher-builder,<br />equally at home in both.
+              </h2>
+              <div class="about-copy" style="margin-top: 28px">
+                <p>
+                  Prasham studies
+                  <strong
+                    >Computer Science and Mathematics at Harvard College</strong
+                  >. His work sits at the intersection of ML research and
+                  full-stack engineering — trained on real datasets, shipped to
+                  real users.
+                </p>
+                <p>
+                  On the research side, he's first author on an
+                  <strong>IEEE paper and conference poster</strong> discovering
+                  human-readable equations from physics data, awarded
+                  <strong>Best Poster at MIT URTC</strong> among roughly 700
+                  total submissions. On the engineering side, he's led a team to
+                  <strong>1st place at Empower Hacks 2.0</strong>, shipped a
+                  production summer-storage platform live at 17+ college
+                  campuses, and grown a game he built solo to 200+ daily
+                  players.
+                </p>
+                <p class="ask">
+                  He's currently looking for research and engineering
+                  internships — reach out below.
+                </p>
+              </div>
+            </div>
+            <div class="reveal">
+              <div class="fact-card">
+                <div class="fact-block">
+                  <span class="fact-label">Research</span>
+                  <div class="fact-value">
+                    <strong>ML &amp; AI</strong> · symbolic regression ·
+                    neural-network interpretability · multimodal robustness
+                  </div>
+                </div>
+                <div class="fact-block">
+                  <span class="fact-label">Engineering</span>
+                  <div class="fact-value">
+                    <strong>Full-stack</strong> — React / React Native,
+                    Firebase, Node &amp; Express &nbsp;·&nbsp;
+                    <strong>Embedded</strong> — Android, OpenCV, PID control
+                    &nbsp;·&nbsp; <strong>Real-time</strong> — WebSockets
+                  </div>
+                </div>
+                <div class="fact-block">
+                  <span class="fact-label">Currently</span>
+                  <div class="fact-value">
+                    <strong>Software Engineer</strong> @ Dorm To Door Student
+                    Storage · Coursework @ Harvard &amp; MIT
+                  </div>
+                </div>
+                <div class="lang-strip">
+                  <span class="lang-item"><b>English</b> — native</span>
+                  <span class="lang-item"><b>Gujarati</b> — native</span>
+                  <span class="lang-item"><b>Hindi</b> — fluent</span>
+                  <span class="lang-item"><b>Spanish</b> — working</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ RESEARCH ============ -->
+      <section id="research">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div class="eyebrow">Research</div>
+            <h2>
+              Teaching machines to find patterns, and to know when they're
+              fooling themselves.
+            </h2>
+            <p>
+              Two independent research threads — one on getting models to
+              discover clean equations for physical laws, the other on
+              stress-testing whether multimodal LLMs can be trusted under noisy,
+              real-world conditions.
+            </p>
+          </div>
+
+          <div class="research-card reveal" id="symbolicRegression">
+            <div class="research-top">
+              <div>
+                <h3>Symbolic Regression for Physics Discovery</h3>
+                <div class="research-meta">
+                  Drew University · Advised by Dr. Minjoon Kouh
+                </div>
+              </div>
+              <span class="research-badge"
+                >🏆 Best Poster — IEEE MIT URTC, among ~700 total
+                submissions</span
+              >
+            </div>
+            <p class="research-lede">
+              "Teaching AI to discover human-readable equations directly from
+              raw physics data — not just predict, but explain."
+            </p>
+            <p class="research-body">
+              Prasham led the CS research team on this project and
+              first-authored both the resulting IEEE paper, first presented at
+              the David Miyamoto Scholars Conference, and a distilled poster,
+              awarded Best Poster at IEEE MIT URTC among roughly 700 total
+              conference submissions. The team replicated Udrescu &amp;
+              Tegmark's
+              <em>AI Feynman</em> (2020) from scratch — regression, functional
+              feature expansion, and symmetry detection — to expose its core
+              mechanisms, then extended it to address two problems the original
+              left unresolved: noisy data and variable numerical scales. Testing
+              on synthetic physics datasets with Gaussian noise, the system
+              rediscovered equations with near-perfect accuracy at zero noise
+              (R² ≈ 1.00 for most physics-derived equations) but degraded
+              sharply as noise increased, falling to R² ≈ 0.49 at σ = 0.2 and
+              collapsing below zero at σ = 0.4, with failures showing up as
+              either underfitting or bloated, spurious equations. Prasham's most
+              significant contribution — a novel
+              <strong style="color: var(--ink)">adaptive-α rule</strong> that
+              scales symmetry-detection thresholds to each dataset's
+              distribution — nearly doubled true symmetry detections (60 → 110)
+              while cutting false positives
+              <strong style="color: var(--accent)">tenfold (29 → 3)</strong>,
+              with the largest gains at small numerical ranges. This key
+              improvement makes the technology much more useful for cutting-edge
+              science.
+            </p>
+            <div class="chip-row">
+              <span class="chip">Python</span><span class="chip">PyTorch</span
+              ><span class="chip">SymPy</span
+              ><span class="chip">Scikit-learn</span
+              ><span class="chip">NumPy / Pandas</span>
+            </div>
+            <div class="research-viz">
+              <div class="eq-viz">
+                <canvas
+                  id="eqCanvas"
+                  style="width: 100%; height: 100%"
+                ></canvas>
+              </div>
+              <div>
+                <p class="research-body" style="margin-bottom: 14px">
+                  Scattered, noisy, multivariate measurements — when simplified
+                  with symmetry detection — can be reduced in dimensionality,
+                  resolving into a single interpretable curve the model can
+                  symbolically recover.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="research-card reveal" id="mllmRobustness">
+            <div class="research-top">
+              <div>
+                <h3>MLLM Robustness to Real-World Noise</h3>
+                <div class="research-meta">
+                  Independent research · Published via Cambridge Open Engage
+                </div>
+              </div>
+              <span class="research-badge">Independent · 1st author</span>
+            </div>
+            <p class="research-lede">
+              "If you misspell a word or your camera is a little noisy, does the
+              model still get it right?"
+            </p>
+            <p class="research-body">
+              Prasham independently studied a question that hadn't yet been
+              examined in the literature: while the noise resistance of
+              classification models and text-only LLMs was known, no one had
+              measured it for multimodal LLMs (MLLMs). He tested two MLLMs
+              (GPT-4o and LLaVA) against textual noise (misspellings) and image
+              noise (Gaussian, salt-and-pepper, and speckle), alongside a
+              text-only baseline (GPT-3.5), across 10 textual and 30 image-based
+              prompts — each run clean, noised, and denoised (via
+              <em>aspell</em> for text, OpenCV's Fast NL Means for images). The
+              hypothesis that MLLMs would show worse noise resistance than a
+              traditional LLM was supported: MLLMs degraded significantly more
+              on noisy text than GPT-3.5 did (p=0.025), with the smaller model
+              (LLaVA) hit hardest (p=0.048). The second hypothesis — that
+              denoising would help — was refuted: classical denoising
+              significantly <strong style="color: var(--ink)">hurt</strong> text
+              performance instead of improving it (p=0.010), and showed no
+              reliable benefit on images either. A secondary, non-central
+              finding suggested lower-parameter models fare worse under noise,
+              consistent with the LLaVA result, though the study wasn't designed
+              to isolate model size as a variable. The practical takeaway: MLLM
+              users should focus on writing clean prompts up front rather than
+              leaning on traditional algorithmic denoisers.
+            </p>
+            <div class="chip-row">
+              <span class="chip">Multimodal LLMs</span
+              ><span class="chip">OpenCV</span
+              ><span class="chip">Statistical analysis</span
+              ><span class="chip">Python</span><span class="chip">Linux</span>
+            </div>
+            <div class="research-viz">
+              <div class="chart-viz">
+                <div class="bar-group-label">Text prompts — avg. score / 3</div>
+                <div class="bar-row" style="--w: 80%">
+                  <span class="bar-label">GPT-3.5 · clean</span>
+                  <div class="bar-track"><div class="bar-fill"></div></div>
+                  <span class="bar-value">2.40</span>
+                </div>
+                <div class="bar-row" style="--w: 80%">
+                  <span class="bar-label">GPT-3.5 · noisy</span>
+                  <div class="bar-track"><div class="bar-fill"></div></div>
+                  <span class="bar-value">2.40</span>
+                </div>
+                <div class="bar-row" style="--w: 63.3%">
+                  <span class="bar-label">GPT-3.5 · denoised</span>
+                  <div class="bar-track"><div class="bar-fill"></div></div>
+                  <span class="bar-value">1.90</span>
+                </div>
+                <div class="bar-row" style="--w: 91.7%">
+                  <span class="bar-label">MLLM avg · clean</span>
+                  <div class="bar-track"><div class="bar-fill"></div></div>
+                  <span class="bar-value">2.75</span>
+                </div>
+                <div class="bar-row" style="--w: 70%">
+                  <span class="bar-label">MLLM avg · noisy</span>
+                  <div class="bar-track"><div class="bar-fill"></div></div>
+                  <span class="bar-value">2.10</span>
+                </div>
+                <div class="bar-row" style="--w: 40%">
+                  <span class="bar-label">MLLM avg · denoised</span>
+                  <div class="bar-track"><div class="bar-fill"></div></div>
+                  <span class="bar-value">1.20</span>
+                </div>
+                <div class="bar-group-label">
+                  Image prompts — avg. score / 3
+                </div>
+                <div class="bar-row" style="--w: 85.6%">
+                  <span class="bar-label">MLLM avg · clean</span>
+                  <div class="bar-track"><div class="bar-fill"></div></div>
+                  <span class="bar-value">2.57</span>
+                </div>
+                <div class="bar-row" style="--w: 80%">
+                  <span class="bar-label">MLLM avg · noisy</span>
+                  <div class="bar-track"><div class="bar-fill"></div></div>
+                  <span class="bar-value">2.40</span>
+                </div>
+                <div class="bar-row" style="--w: 75%">
+                  <span class="bar-label">MLLM avg · denoised</span>
+                  <div class="bar-track"><div class="bar-fill"></div></div>
+                  <span class="bar-value">2.25</span>
+                </div>
+                <div class="chart-caption">
+                  Average scores on a 0–3 scale, from the study's
+                  noise-resistance appendix (n=10 text prompts, n=30 image
+                  prompts). MLLM = GPT-4o + LLaVA combined.
+                </div>
+              </div>
+              <div>
+                <p class="research-body">
+                  The clearest, most statistically significant result: denoising
+                  text prompts before feeding them to a multimodal (or even
+                  text-based) model made the model's answers
+                  <strong style="color: var(--ink)">worse</strong>, not better —
+                  the opposite of what a naive noise-handling pipeline would
+                  assume. MLLMs, by virtue of having been trained on natural
+                  language and real, messy images, appear to be good at sorting
+                  through noisy inputs independently; traditional denoising
+                  algorithms just get in the way.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PROJECTS ============ -->
+      <section id="projects">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div class="eyebrow">Projects & Experience</div>
+            <h2>Shipped systems, not just prototypes.</h2>
+            <p>
+              From a hackathon win to production infrastructure serving
+              thousands of users.
+            </p>
+          </div>
+
+          <!-- Dorm to Door -->
+          <div class="project-card reverse reveal" id="dormToDoor">
+            <div class="project-grid">
+              <div class="project-visual">
+                <div class="glow"></div>
+                <div class="motif">
+                  <svg viewBox="0 0 300 220">
+                    <g fill="none" stroke="var(--accent)" stroke-width="1.4">
+                      <circle cx="70" cy="150" r="7" />
+                      <circle cx="150" cy="70" r="7" />
+                      <circle cx="230" cy="150" r="7" />
+                      <circle cx="150" cy="160" r="7" />
+                      <path
+                        d="M70 150 L150 70 L230 150 L150 160 L70 150"
+                        stroke-opacity="0.8"
+                      />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="project-content">
+                <span class="project-index">01 — Professional scaling</span>
+                <h3>Dorm To Door Student Storage</h3>
+                <p class="project-pitch">
+                  Full-stack platform running live storage logistics for 17+
+                  campuses.
+                </p>
+                <p class="project-desc">
+                  As a lead software engineer, architected and shipped the
+                  full-stack platform end to end — a React Native frontend, a
+                  Firebase/Node backend handling auth, admin tools, and
+                  real-time sync, and a graph-based route-optimization system
+                  for coordinating complex multi-stop pickup and delivery
+                  schedules.
+                </p>
+                <span class="project-metric"
+                  >Live in production across the full 2025 storage season</span
+                >
+                <div class="chip-row">
+                  <span class="chip">React Native</span
+                  ><span class="chip">Firebase</span
+                  ><span class="chip">Stripe</span
+                  ><span class="chip">Graph algorithms</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legal Lieutenant -->
+          <div class="project-card reveal" id="legalLieutenant">
+            <div class="project-grid">
+              <div class="project-visual">
+                <div class="glow"></div>
+                <div class="motif">
+                  <svg viewBox="0 0 300 220">
+                    <g
+                      fill="none"
+                      stroke="var(--accent)"
+                      stroke-width="1.4"
+                      opacity="0.9"
+                    >
+                      <rect
+                        x="90"
+                        y="30"
+                        width="120"
+                        height="150"
+                        rx="6"
+                        stroke-opacity="0.5"
+                      />
+                      <line x1="105" y1="55" x2="195" y2="55" />
+                      <line x1="105" y1="72" x2="195" y2="72" />
+                      <line x1="105" y1="89" x2="165" y2="89" />
+                      <line x1="105" y1="115" x2="195" y2="115" />
+                      <line x1="105" y1="132" x2="180" y2="132" />
+                      <circle cx="150" cy="155" r="14" stroke-width="1.8" />
+                      <path d="M143 155h14M150 148v14" stroke-width="1.8" />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="project-content">
+                <span class="project-index">02 — Hackathon success</span>
+                <h3>Legal Lieutenant</h3>
+                <p class="project-pitch">
+                  An AI legal assistant for immigrants navigating paperwork
+                  alone.
+                </p>
+                <p class="project-desc">
+                  Led a team to build an assistant that helps immigrants and
+                  low-income students through immigration forms, rental
+                  agreements, employment documents, and FAFSA — with a custom
+                  NLP pipeline for chunking dense legal documents and a
+                  fine-tuned GPT layer for domain-specific Q&amp;A and
+                  summarization.
+                </p>
+                <span class="project-metric"
+                  >🏆 1st place · Empower Hacks 2.0 · 2,000 competitors · $210K
+                  prize pool</span
+                >
+                <div class="chip-row">
+                  <span class="chip">Node / Express</span
+                  ><span class="chip">Firebase</span
+                  ><span class="chip">GPT fine-tuning</span
+                  ><span class="chip">EJS</span><span class="chip">OAuth</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/ps-coding/LegalLieutenant"
+                    target="_blank"
+                    rel="noopener"
+                    >GitHub ↗</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SocialScanner -->
+          <div class="project-card reverse reveal" id="socialScanner">
+            <div class="project-grid">
+              <div class="project-visual">
+                <div class="glow"></div>
+                <div class="motif">
+                  <svg viewBox="0 0 300 220">
+                    <g fill="none" stroke="var(--accent)" stroke-width="1.4">
+                      <circle cx="90" cy="70" r="26" />
+                      <circle cx="150" cy="130" r="26" />
+                      <circle cx="210" cy="70" r="26" />
+                      <line x1="107" y1="85" x2="133" y2="115" />
+                      <line x1="167" y1="115" x2="193" y2="85" />
+                      <path
+                        d="M64 168 Q150 195 236 168"
+                        stroke-dasharray="3 4"
+                      />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="project-content">
+                <span class="project-index">03 — School-backed initiative</span>
+                <h3>SocialScanner</h3>
+                <p class="project-pitch">
+                  A privacy-first ML screener for student mental health.
+                </p>
+                <p class="project-desc">
+                  Built with a partner to analyze grade trends, social-media
+                  activity, and counselor notes for early warning signs — using
+                  a one-model-per-metric architecture so schools can activate
+                  only the signals they need, and parallel computing to generate
+                  counselor reports at scale.
+                </p>
+                <span class="project-metric"
+                  >Presented at national TSA conference · adopted by Northern
+                  Burlington HS</span
+                >
+                <div class="chip-row">
+                  <span class="chip">PyTorch</span
+                  ><span class="chip">Computer Vision</span
+                  ><span class="chip">NLP</span
+                  ><span class="chip">Parallel computing</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/ps-coding/SocialScanner"
+                    target="_blank"
+                    rel="noopener"
+                    >GitHub ↗</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ultra Ball -->
+          <div class="project-card reveal" id="ultraBall">
+            <div class="project-grid">
+              <div class="project-visual">
+                <div class="glow"></div>
+                <div class="motif">
+                  <svg viewBox="0 0 300 220">
+                    <g fill="none" stroke="var(--accent)" stroke-width="1.4">
+                      <circle cx="150" cy="110" r="46" stroke-opacity="0.6" />
+                      <circle
+                        cx="150"
+                        cy="110"
+                        r="6"
+                        fill="var(--accent)"
+                        stroke="none"
+                      />
+                      <circle
+                        cx="95"
+                        cy="70"
+                        r="5"
+                        fill="var(--accent)"
+                        stroke="none"
+                      />
+                      <circle
+                        cx="210"
+                        cy="150"
+                        r="5"
+                        fill="var(--accent)"
+                        stroke="none"
+                      />
+                      <path
+                        d="M95 70 L150 110 L210 150"
+                        stroke-dasharray="2 5"
+                      />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="project-content">
+                <span class="project-index">04 — Organic growth</span>
+                <h3>Ultra Ball</h3>
+                <p class="project-pitch">
+                  A real-time multiplayer game built solo, from the socket up.
+                </p>
+                <p class="project-desc">
+                  A fully custom, client-agnostic WebSocket server resolves
+                  interactions between 15+ distinct player moves, manages bot
+                  opponents with randomized behavior-tree personalities, and
+                  automates lobby lifecycle — paired with a lightweight
+                  SvelteKit + TypeScript client.
+                </p>
+                <span class="project-metric"
+                  >200+ daily active users, reached organically within months of
+                  launch</span
+                >
+                <div class="chip-row">
+                  <span class="chip">SvelteKit</span
+                  ><span class="chip">TypeScript</span
+                  ><span class="chip">WebSockets</span
+                  ><span class="chip">Behavior-tree AI</span>
+                </div>
+                <div class="project-links">
+                  <a
+                    href="https://github.com/ps-coding/ultraball"
+                    target="_blank"
+                    rel="noopener"
+                    >GitHub ↗</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Robotics -->
+          <div class="project-card reveal" id="robotics">
+            <div class="project-grid">
+              <div class="project-visual">
+                <div class="glow"></div>
+                <div class="motif">
+                  <svg viewBox="0 0 300 220">
+                    <g fill="none" stroke="var(--accent)" stroke-width="1.4">
+                      <rect x="115" y="60" width="70" height="70" rx="8" />
+                      <circle
+                        cx="130"
+                        cy="80"
+                        r="5"
+                        fill="var(--accent)"
+                        stroke="none"
+                      />
+                      <circle
+                        cx="170"
+                        cy="80"
+                        r="5"
+                        fill="var(--accent)"
+                        stroke="none"
+                      />
+                      <line x1="115" y1="150" x2="90" y2="175" />
+                      <line x1="185" y1="150" x2="210" y2="175" />
+                      <line x1="150" y1="130" x2="150" y2="155" />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div class="project-content">
+                <span class="project-index">05 — 4-year build</span>
+                <h3>FIRST Tech Challenge — Team 5387</h3>
+                <p class="project-pitch">
+                  Captain &amp; Lead Programmer, four seasons running.
+                </p>
+                <p class="project-desc">
+                  Wrote the autonomous routine — combining PID control, OpenCV
+                  vision, and lightweight ML — that ran on sub-$100 embedded
+                  Android hardware and set a team scoring record. Designed and
+                  3D-printed custom parts via CAD, secured over $15K in
+                  sponsorship, and mentored a rookie team.
+                </p>
+                <span class="project-metric"
+                  >🏆 Inspire Award (highest team honor) · record-setting
+                  autonomous run</span
+                >
+                <div class="chip-row">
+                  <span class="chip">PID control</span
+                  ><span class="chip">OpenCV</span
+                  ><span class="chip">Embedded ML</span
+                  ><span class="chip">CAD</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="other-builds reveal">
+            <div class="other-builds-head">Other builds</div>
+            <div class="ob-grid">
+              <div class="ob-card">
+                <span class="ob-lang">RUST</span>
+                <h4>number_to_words</h4>
+                <p>
+                  A robust, extensible number-to-words converter, built entirely
+                  from scratch as a self-set challenge in idiomatic, performant
+                  Rust.
+                </p>
+                <a
+                  href="https://github.com/ps-coding/number_to_words"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub ↗</a
+                >
+              </div>
+              <div class="ob-card">
+                <span class="ob-lang">JAVASCRIPT</span>
+                <h4>math-practice</h4>
+                <p>
+                  A learning game for arithmetic practice with a scaling
+                  difficulty curve and a coin-based system for unlocking dynamic
+                  powerups.
+                </p>
+                <a
+                  href="https://github.com/ps-coding/math-practice"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub ↗</a
+                >
+              </div>
+              <div class="ob-card">
+                <span class="ob-lang">PYTHON</span>
+                <h4>CompetitiveProgramming</h4>
+                <p>
+                  An ongoing archive of competitive-programming solutions,
+                  including USACO and Lockheed Martin Code Quest problem sets.
+                </p>
+                <a
+                  href="https://github.com/ps-coding/CompetitiveProgramming"
+                  target="_blank"
+                  rel="noopener"
+                  >GitHub ↗</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ HONORS ============ -->
+      <section id="honors">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div class="eyebrow">Honors &amp; Recognition</div>
+            <h2>The highlight reel.</h2>
+          </div>
+          <div class="honors-subhead">Computing-Related Awards</div>
+          <div class="honors-list reveal">
+            <div class="honor-row">
+              <span class="honor-name">MIT URTC (IEEE CS Conference)</span
+              ><span class="honor-result"
+                >Best Poster — among ~700 total submissions</span
+              >
+            </div>
+            <div class="honor-row">
+              <span class="honor-name">Empower Hacks 2.0</span
+              ><span class="honor-result"
+                >1st place internationally — 2,000 competitors, $210k prize
+                pool</span
+              >
+            </div>
+            <div class="honor-row">
+              <span class="honor-name">Lockheed Martin Code Quest</span
+              ><span class="honor-result"
+                >3rd place, Advanced Division, inter-state</span
+              >
+            </div>
+          </div>
+          <div class="honors-subhead">General Recognition</div>
+          <div class="honors-list reveal">
+            <div class="honor-row">
+              <span class="honor-name"
+                >NJ Governor's School in the Sciences</span
+              ><span class="honor-result">1 of 56 scholars, statewide</span>
+            </div>
+            <div class="honor-row">
+              <span class="honor-name">U.S. Presidential Scholar</span
+              ><span class="honor-result"
+                >National semifinalist — top 0.01%</span
+              >
+            </div>
+            <div class="honor-row">
+              <span class="honor-name">Stamps Scholarship, Georgia Tech</span
+              ><span class="honor-result"
+                >1 of 430 national semifinalists — top 1%</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SKILLS ============ -->
+      <div class="wrap">
+        <div class="skills-strip reveal">
+          <div class="skills-group">
+            <span class="skills-group-label">Languages</span>
+            <span class="skill-pill">Python</span
+            ><span class="skill-pill">TypeScript</span
+            ><span class="skill-pill">C++</span
+            ><span class="skill-pill">Rust</span
+            ><span class="skill-pill">Go</span
+            ><span class="skill-pill">SQL</span
+            ><span class="skill-pill">Java</span>
+          </div>
+          <div class="skills-group">
+            <span class="skills-group-label">Frameworks &amp; ML</span>
+            <span class="skill-pill">React / Next.js</span
+            ><span class="skill-pill">React Native</span
+            ><span class="skill-pill">SvelteKit</span
+            ><span class="skill-pill">Node / Express</span
+            ><span class="skill-pill">PyTorch</span
+            ><span class="skill-pill">Scikit-learn</span
+            ><span class="skill-pill">OpenCV</span>
+          </div>
+          <div class="skills-group">
+            <span class="skills-group-label">Infrastructure</span>
+            <span class="skill-pill">Firebase / GCP</span
+            ><span class="skill-pill">AWS</span
+            ><span class="skill-pill">WebSockets</span
+            ><span class="skill-pill">LLM fine-tuning</span
+            ><span class="skill-pill">OAuth</span
+            ><span class="skill-pill">Git / Linux</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ CONTACT ============ -->
+      <section id="contact">
+        <div class="wrap contact-inner reveal">
+          <div class="eyebrow" style="justify-content: center">Contact</div>
+          <h2 style="margin-top: 16px">
+            Open to internships and research collaborations.
+          </h2>
+          <p>The fastest way to reach me is email — I read everything.</p>
+          <div class="contact-actions">
+            <button
+              class="btn btn-primary magnetic copy-email"
+              id="copyEmailBtn"
+            >
+              prashamshah@college.harvard.edu
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+              >
+                <rect x="9" y="9" width="12" height="12" rx="2" />
+                <path d="M5 15V5a2 2 0 0 1 2-2h10" />
+              </svg>
+              <span class="toast">Copied ✓</span>
+            </button>
+            <a
+              href="https://www.linkedin.com/in/prasham-c-shah"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-ghost magnetic"
+              >LinkedIn ↗</a
+            >
+            <a
+              href="https://github.com/ps-coding"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-ghost magnetic"
+              >GitHub ↗</a
+            >
+            <a
+              href="Prasham_Shah_Resume.pdf"
+              target="_blank"
+              rel="noopener"
+              class="btn btn-ghost magnetic"
+              >Résumé ↓</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap footer-inner">
+        <p>
+          © 2026 Prasham Shah. Built with Next.js-flavored ambitions, shipped as
+          static HTML.
+        </p>
+        <p>Last updated July 2026</p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        "use strict";
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* ---------- Theme toggle ---------- */
+        const root = document.documentElement;
+        const themeToggle = document.getElementById("themeToggle");
+        const themeIcon = document.getElementById("themeIcon");
+        const SUN =
+          '<path d="M12 4V2M12 22v-2M4.93 4.93 3.51 3.51M20.49 20.49l-1.42-1.42M4 12H2M22 12h-2M4.93 19.07l-1.42 1.42M20.49 3.51l-1.42 1.42"/><circle cx="12" cy="12" r="5"/>';
+        const MOON =
+          '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+        function applyTheme(t) {
+          root.setAttribute("data-theme", t);
+          themeIcon.innerHTML = t === "light" ? SUN : MOON;
+          try {
+            localStorage.setItem("ps-theme", t);
+          } catch (e) {}
+        }
+        (function initTheme() {
+          // The <head> inline script already set data-theme synchronously (before first paint)
+          // based on saved preference or the browser's prefers-color-scheme. Just sync the icon here.
+          const current = root.getAttribute("data-theme") || "dark";
+          themeIcon.innerHTML = current === "light" ? SUN : MOON;
+        })();
+        themeToggle.addEventListener("click", () => {
+          applyTheme(
+            root.getAttribute("data-theme") === "dark" ? "light" : "dark",
+          );
+        });
+
+        /* ---------- Nav scroll state + active section ---------- */
+        const nav = document.getElementById("siteNav");
+        const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
+        const sections = [
+          "about",
+          "research",
+          "projects",
+          "honors",
+          "contact",
+        ].map((id) => document.getElementById(id));
+        function onScroll() {
+          nav.classList.toggle("scrolled", window.scrollY > 40);
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        const secObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const id = entry.target.id;
+                navLinks.forEach((l) =>
+                  l.classList.toggle("active", l.dataset.sec === id),
+                );
+              }
+            });
+          },
+          { rootMargin: "-45% 0px -50% 0px" },
+        );
+        sections.forEach((s) => s && secObserver.observe(s));
+
+        /* ---------- Mobile menu ---------- */
+        const hamburgerBtn = document.getElementById("hamburgerBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+        hamburgerBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("open");
+        });
+        mobileMenu
+          .querySelectorAll("a")
+          .forEach((a) =>
+            a.addEventListener("click", () =>
+              mobileMenu.classList.remove("open"),
+            ),
+          );
+
+        /* ---------- Scroll reveal ---------- */
+        const revealEls = document.querySelectorAll(".reveal");
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, i) => {
+              if (entry.isIntersecting) {
+                entry.target.style.setProperty("--i", i % 6);
+                entry.target.classList.add("in");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+        revealEls.forEach((el) => revealObserver.observe(el));
+
+        /* ---------- Bar chart reveal ---------- */
+        const barRows = document.querySelectorAll(".bar-row");
+        const barObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in");
+              }
+            });
+          },
+          { threshold: 0.4 },
+        );
+        barRows.forEach((el) => barObserver.observe(el));
+
+        /* ---------- Hero role rotator ---------- */
+        const roles = [
+          "ML Researcher",
+          "Software Engineer",
+          "Systems Builder",
+          "CS + Math @ Harvard",
+        ];
+        const roleEl = document.getElementById("roleText");
+        let ri = 0;
+        if (!reduceMotion) {
+          setInterval(() => {
+            ri = (ri + 1) % roles.length;
+            roleEl.style.opacity = 0;
+            setTimeout(() => {
+              roleEl.textContent = roles[ri];
+              roleEl.style.opacity = 1;
+            }, 260);
+          }, 2600);
+          roleEl.style.transition = "opacity .26s ease";
+        }
+
+        /* ---------- Magnetic buttons ---------- */
+        if (window.matchMedia("(pointer:fine)").matches && !reduceMotion) {
+          document.querySelectorAll(".magnetic").forEach((btn) => {
+            btn.addEventListener("mousemove", (e) => {
+              const r = btn.getBoundingClientRect();
+              const x = e.clientX - r.left - r.width / 2;
+              const y = e.clientY - r.top - r.height / 2;
+              btn.style.transform = `translate(${x * 0.18}px, ${y * 0.3}px)`;
+            });
+            btn.addEventListener("mouseleave", () => {
+              btn.style.transform = "translate(0,0)";
+            });
+          });
+        }
+
+        /* ---------- Custom cursor ---------- */
+        const cursorDot = document.getElementById("cursorDot");
+        const cursorRing = document.getElementById("cursorRing");
+        if (window.matchMedia("(pointer:fine)").matches) {
+          let mx = 0,
+            my = 0,
+            rx = 0,
+            ry = 0;
+          window.addEventListener("mousemove", (e) => {
+            mx = e.clientX;
+            my = e.clientY;
+            cursorDot.style.left = mx + "px";
+            cursorDot.style.top = my + "px";
+          });
+          function loop() {
+            rx += (mx - rx) * 0.18;
+            ry += (my - ry) * 0.18;
+            cursorRing.style.left = rx + "px";
+            cursorRing.style.top = ry + "px";
+            requestAnimationFrame(loop);
+          }
+          loop();
+          document
+            .querySelectorAll("a, button, .project-card, .ob-card")
+            .forEach((el) => {
+              el.addEventListener("mouseenter", () => {
+                cursorRing.style.width = "54px";
+                cursorRing.style.height = "54px";
+                cursorDot.style.width = "0";
+                cursorDot.style.height = "0";
+              });
+              el.addEventListener("mouseleave", () => {
+                cursorRing.style.width = "36px";
+                cursorRing.style.height = "36px";
+                cursorDot.style.width = "9px";
+                cursorDot.style.height = "9px";
+              });
+            });
+        } else {
+          cursorDot.style.display = "none";
+          cursorRing.style.display = "none";
+        }
+
+        /* ---------- Copy email ---------- */
+        const copyBtn = document.getElementById("copyEmailBtn");
+        copyBtn.addEventListener("click", () => {
+          const email = "prashamshah@college.harvard.edu";
+          navigator.clipboard
+            .writeText(email)
+            .then(() => {
+              copyBtn.classList.add("copied");
+              setTimeout(() => copyBtn.classList.remove("copied"), 1800);
+            })
+            .catch(() => {});
+        });
+
+        /* ---------- Command palette ---------- */
+        const cmdkOverlay = document.getElementById("cmdkOverlay");
+        const cmdkInput = document.getElementById("cmdkInput");
+        const cmdkList = document.getElementById("cmdkList");
+        const cmdkTrigger = document.getElementById("cmdkTrigger");
+        const commands = [
+          { label: "Hero", tag: "top", href: "#hero" },
+          { label: "About", tag: "section", href: "#about" },
+          {
+            label: "Research",
+            tag: "section",
+            href: "#research",
+          },
+          {
+            label: "Research — Symbolic Regression",
+            tag: "research",
+            href: "#symbolicRegression",
+          },
+          {
+            label: "Research — MLLM Robustness",
+            tag: "research",
+            href: "#mllmRobustness",
+          },
+          {
+            label: "Projects",
+            tag: "section",
+            href: "#projects",
+          },
+          {
+            label: "Projects — Dorm To Door",
+            tag: "project",
+            href: "#dormToDoor",
+          },
+          {
+            label: "Projects — Legal Lieutenant",
+            tag: "project",
+            href: "#legalLieutenant",
+          },
+          {
+            label: "Projects — SocialScanner",
+            tag: "project",
+            href: "#socialScanner",
+          },
+          {
+            label: "Projects — Ultra Ball",
+            tag: "project",
+            href: "#ultraBall",
+          },
+          { label: "Honors & Recognition", tag: "section", href: "#honors" },
+          { label: "Contact", tag: "section", href: "#contact" },
+          {
+            label: "Download résumé",
+            tag: "file",
+            href: "Prasham_Shah_Resume.pdf",
+          },
+          {
+            label: "Open GitHub",
+            tag: "link",
+            href: "https://github.com/ps-coding",
+          },
+          {
+            label: "Open LinkedIn",
+            tag: "link",
+            href: "https://www.linkedin.com/in/prasham-c-shah",
+          },
+        ];
+        let activeIdx = 0;
+        function renderCmdk(filter) {
+          const f = (filter || "").toLowerCase();
+          const filtered = commands.filter((c) =>
+            c.label.toLowerCase().includes(f),
+          );
+          cmdkList.innerHTML = "";
+          filtered.forEach((c, i) => {
+            const div = document.createElement("div");
+            div.className = "cmdk-item" + (i === activeIdx ? " active" : "");
+            div.innerHTML = `<span class="l">${c.label}</span><span class="tag">${c.tag}</span>`;
+            div.addEventListener("click", () => go(c));
+            div.addEventListener("mouseenter", () => {
+              activeIdx = i;
+              refreshActive();
+            });
+            cmdkList.appendChild(div);
+          });
+          cmdkList._filtered = filtered;
+        }
+        function refreshActive() {
+          Array.from(cmdkList.children).forEach((el, i) =>
+            el.classList.toggle("active", i === activeIdx),
+          );
+        }
+        function go(c) {
+          closeCmdk();
+          if (c.href.startsWith("#")) {
+            document
+              .querySelector(c.href)
+              ?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+          } else {
+            window.open(c.href, "_blank");
+          }
+        }
+        function openCmdk() {
+          cmdkOverlay.classList.add("open");
+          cmdkInput.value = "";
+          activeIdx = 0;
+          renderCmdk("");
+          setTimeout(() => cmdkInput.focus(), 30);
+        }
+        function closeCmdk() {
+          cmdkOverlay.classList.remove("open");
+        }
+        cmdkTrigger.addEventListener("click", openCmdk);
+        cmdkOverlay.addEventListener("click", (e) => {
+          if (e.target === cmdkOverlay) closeCmdk();
+        });
+        cmdkInput.addEventListener("input", () => {
+          activeIdx = 0;
+          renderCmdk(cmdkInput.value);
+        });
+        window.addEventListener("keydown", (e) => {
+          if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+            e.preventDefault();
+            cmdkOverlay.classList.contains("open") ? closeCmdk() : openCmdk();
+          }
+          if (cmdkOverlay.classList.contains("open")) {
+            const list = cmdkList._filtered || [];
+            if (e.key === "Escape") {
+              closeCmdk();
+            }
+            if (e.key === "ArrowDown") {
+              e.preventDefault();
+              activeIdx = Math.min(activeIdx + 1, list.length - 1);
+              refreshActive();
+            }
+            if (e.key === "ArrowUp") {
+              e.preventDefault();
+              activeIdx = Math.max(activeIdx - 1, 0);
+              refreshActive();
+            }
+            if (e.key === "Enter") {
+              e.preventDefault();
+              if (list[activeIdx]) go(list[activeIdx]);
+            }
+          }
+        });
+
+        /* ---------- Hero canvas: symbolic-regression curve-fitting animation ---------- */
+        const heroCanvas = document.getElementById("heroCanvas");
+        const hctx = heroCanvas.getContext("2d");
+        let hw = 0,
+          hh = 0,
+          dpr = Math.min(window.devicePixelRatio || 1, 2);
+        function sizeCanvas(canvas, ctx) {
+          const parent = canvas.parentElement;
+          const w = parent.clientWidth,
+            h = parent.clientHeight;
+          canvas.width = w * dpr;
+          canvas.height = h * dpr;
+          canvas.style.width = w + "px";
+          canvas.style.height = h + "px";
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          return { w, h };
+        }
+        function resizeHero() {
+          const s = sizeCanvas(heroCanvas, hctx);
+          hw = s.w;
+          hh = s.h;
+        }
+        window.addEventListener("resize", resizeHero);
+        resizeHero();
+
+        function accentColor() {
+          return (
+            getComputedStyle(document.documentElement)
+              .getPropertyValue("--accent")
+              .trim() || "#e8a33d"
+          );
+        }
+        function inkDimColor() {
+          return (
+            getComputedStyle(document.documentElement)
+              .getPropertyValue("--ink-dim")
+              .trim() || "#a4acb8"
+          );
+        }
+
+        const N_POINTS = 46;
+        let points = [];
+        function seedPoints() {
+          points = [];
+          for (let i = 0; i < N_POINTS; i++) {
+            const t = i / (N_POINTS - 1);
+            const trueY =
+              Math.sin(t * Math.PI * 2.1) * 0.55 +
+              Math.cos(t * Math.PI * 1.1) * 0.2;
+            points.push({
+              t,
+              trueY,
+              x0: Math.random(),
+              y0: Math.random() * 2 - 1, // scattered start
+              settle: 0,
+            });
+          }
+        }
+        seedPoints();
+
+        let animStart = performance.now();
+        const CYCLE = 9000;
+        function curveY(t) {
+          return (
+            Math.sin(t * Math.PI * 2.1) * 0.55 +
+            Math.cos(t * Math.PI * 1.1) * 0.2
+          );
+        }
+        function drawHero(now) {
+          const elapsed = (now - animStart) % CYCLE;
+          const phase = elapsed / CYCLE; // 0..1
+          hctx.clearRect(0, 0, hw, hh);
+          const accent = accentColor();
+          const dim = inkDimColor();
+
+          const padX = hw * 0.06,
+            padY = hh * 0.18;
+          const plotW = hw - padX * 2,
+            plotH = hh * 0.5;
+          const baseY = hh * 0.62;
+
+          // settle progress: points converge 0->1 over first 45% of cycle, hold, then scatter again near end
+          let settle;
+          if (phase < 0.45) settle = phase / 0.45;
+          else if (phase < 0.8) settle = 1;
+          else settle = 1 - (phase - 0.8) / 0.2;
+          settle = Math.max(0, Math.min(1, settle));
+          const eased = settle * settle * (3 - 2 * settle);
+
+          // curve draw progress
+          const curveProgress = Math.max(0, Math.min(1, (phase - 0.12) / 0.4));
+
+          // draw axis baseline
+          hctx.strokeStyle = "rgba(255,255,255,0.05)";
+          hctx.lineWidth = 1;
+          hctx.beginPath();
+          hctx.moveTo(padX, baseY);
+          hctx.lineTo(padX + plotW, baseY);
+          hctx.stroke();
+
+          // draw curve
+          if (curveProgress > 0) {
+            hctx.strokeStyle = accent;
+            hctx.globalAlpha = 0.85 * eased;
+            hctx.lineWidth = 2;
+            hctx.beginPath();
+            const steps = 120;
+            const upto = Math.floor(steps * curveProgress);
+            for (let i = 0; i <= upto; i++) {
+              const t = i / steps;
+              const x = padX + t * plotW;
+              const y = baseY - curveY(t) * plotH * 0.5;
+              if (i === 0) hctx.moveTo(x, y);
+              else hctx.lineTo(x, y);
+            }
+            hctx.stroke();
+            hctx.globalAlpha = 1;
+          }
+
+          // draw points
+          points.forEach((p) => {
+            const targetX = padX + p.t * plotW;
+            const targetY = baseY - p.trueY * plotH * 0.5;
+            const startX = padX + p.x0 * plotW;
+            const startY = baseY - p.y0 * plotH * 0.5;
+            const x = startX + (targetX - startX) * eased;
+            const y = startY + (targetY - startY) * eased;
+            hctx.beginPath();
+            hctx.fillStyle = dim;
+            hctx.globalAlpha = 0.55 + 0.45 * eased;
+            hctx.arc(x, y, 2.4, 0, Math.PI * 2);
+            hctx.fill();
+            hctx.globalAlpha = 1;
+          });
+        }
+
+        let heroRAF;
+        function heroLoop(now) {
+          drawHero(now);
+          heroRAF = requestAnimationFrame(heroLoop);
+        }
+        if (reduceMotion) {
+          drawHero(animStart + CYCLE * 0.6); // static settled frame
+        } else {
+          heroRAF = requestAnimationFrame(heroLoop);
+        }
+
+        /* pause hero animation when off-screen to save cycles */
+        const heroObs = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!reduceMotion) {
+              if (entry.isIntersecting && !heroRAF) {
+                heroRAF = requestAnimationFrame(heroLoop);
+              }
+              if (!entry.isIntersecting && heroRAF) {
+                cancelAnimationFrame(heroRAF);
+                heroRAF = null;
+              }
+            }
+          });
+        });
+        heroObs.observe(document.getElementById("hero"));
+
+        /* ---------- Small equation-discovery canvas in Research section ---------- */
+        const eqCanvas = document.getElementById("eqCanvas");
+        if (eqCanvas) {
+          const ectx = eqCanvas.getContext("2d");
+          let ew = 0,
+            eh = 0;
+          function resizeEq() {
+            const s = sizeCanvas(eqCanvas, ectx);
+            ew = s.w;
+            eh = s.h;
+          }
+          window.addEventListener("resize", resizeEq);
+
+          let eqStart = null;
+          function drawEq(now) {
+            if (!eqStart) eqStart = now;
+            const elapsed = (now - eqStart) % 7000;
+            const phase = elapsed / 7000;
+            ectx.clearRect(0, 0, ew, eh);
+            const accent = accentColor();
+            const dim = inkDimColor();
+            const padX = ew * 0.08,
+              padY = eh * 0.16;
+            const plotW = ew - padX * 2,
+              plotH = eh - padY * 2;
+            const baseY = eh / 2;
+
+            let settle = phase < 0.5 ? phase / 0.5 : 1;
+            settle = Math.min(1, settle);
+            const eased = settle * settle * (3 - 2 * settle);
+            const curveProgress = Math.max(
+              0,
+              Math.min(1, (phase - 0.15) / 0.4),
+            );
+
+            if (curveProgress > 0) {
+              ectx.strokeStyle = accent;
+              ectx.globalAlpha = 0.9 * eased;
+              ectx.lineWidth = 2;
+              ectx.beginPath();
+              const steps = 100;
+              const upto = Math.floor(steps * curveProgress);
+              for (let i = 0; i <= upto; i++) {
+                const t = i / steps;
+                const x = padX + t * plotW;
+                const y = baseY - Math.sin(t * Math.PI * 2.4) * plotH * 0.32;
+                if (i === 0) ectx.moveTo(x, y);
+                else ectx.lineTo(x, y);
+              }
+              ectx.stroke();
+              ectx.globalAlpha = 1;
+            }
+            for (let i = 0; i < 22; i++) {
+              const t = i / 21;
+              const trueY = Math.sin(t * Math.PI * 2.4);
+              const noiseX = 0.5 + 0.5 * Math.sin(i * 12.9);
+              const noiseY = 0.5 + 0.5 * Math.cos(i * 7.3);
+              const sx = padX + noiseX * plotW,
+                sy = baseY - (noiseY * 2 - 1) * plotH * 0.45;
+              const tx = padX + t * plotW,
+                ty = baseY - trueY * plotH * 0.32;
+              const x = sx + (tx - sx) * eased,
+                y = sy + (ty - sy) * eased;
+              ectx.beginPath();
+              ectx.fillStyle = dim;
+              ectx.globalAlpha = 0.5 + 0.5 * eased;
+              ectx.arc(x, y, 2.2, 0, Math.PI * 2);
+              ectx.fill();
+              ectx.globalAlpha = 1;
+            }
+            if (!reduceMotion) {
+              requestAnimationFrame(drawEq);
+            }
+          }
+          resizeEq();
+          const eqObs = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  resizeEq();
+                  if (reduceMotion) {
+                    drawEq(4000);
+                  } else requestAnimationFrame(drawEq);
+                }
+              });
+            },
+            { threshold: 0.2 },
+          );
+          eqObs.observe(eqCanvas);
+        }
+      })();
+    </script>
+  </body>
+</html>
