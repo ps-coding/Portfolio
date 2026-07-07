@@ -375,10 +375,19 @@
 
       .mobile-menu {
         position: fixed;
-        inset: 0 0 0 0;
         top: 64px;
-        z-index: 490;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
         background: var(--bg);
+
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+
+        min-height: calc(100dvh - 64px);
+        height: auto;
+
         display: none;
         flex-direction: column;
         padding: 24px 20px;
@@ -400,6 +409,12 @@
         padding: 14px 4px;
         border-bottom: 1px solid var(--line);
         color: var(--ink);
+      }
+
+      @media (min-width: 861px) {
+        .mobile-menu {
+          display: none !important;
+        }
       }
 
       @media (max-width: 860px) {
