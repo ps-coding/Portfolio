@@ -925,7 +925,17 @@
         margin-bottom: 28px;
         position: relative;
         overflow: hidden;
+        transition:
+          border-color 0.35s var(--ease),
+          transform 0.35s var(--spring),
+          box-shadow 0.35s var(--ease);
       }
+      .research-card:hover {
+        border-color: var(--line-strong);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow);
+      }
+
       .research-card::before {
         content: "";
         position: absolute;
@@ -2294,7 +2304,7 @@
           </div>
 
           <!-- Robotics -->
-          <div class="project-card reveal" id="robotics">
+          <div class="project-card reverse reveal" id="robotics">
             <div class="project-grid">
               <div class="project-visual">
                 <div class="glow"></div>
@@ -2748,7 +2758,7 @@
           }
           loop();
           document
-            .querySelectorAll("a, button, .project-card, .ob-card")
+            .querySelectorAll("a, button, .project-card, .research-card, .skill-pill, .honor-row, .ob-card")
             .forEach((el) => {
               el.addEventListener("mouseenter", () => {
                 cursorRing.style.width = "54px";
