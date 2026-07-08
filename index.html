@@ -2334,7 +2334,7 @@
                 </div>
               </div>
               <div class="project-content">
-                <span class="project-index">05 — 4-year build</span>
+                <span class="project-index">05 — Humble beginnings</span>
                 <h3>FIRST Tech Challenge — Team 5387</h3>
                 <p class="project-pitch">
                   Captain &amp; Lead Programmer, four seasons running.
@@ -2485,6 +2485,8 @@
             ><span class="skill-pill">Java</span
             ><span class="skill-pill">Rust</span
             ><span class="skill-pill">Go</span>
+            <span class="skill-pill">Bash</span>
+            <span class="skill-pill">SQL</span>
           </div>
 
           <div class="skills-group">
@@ -2758,7 +2760,7 @@
           }
           loop();
           document
-            .querySelectorAll("a, button, .project-card, .research-card, .skill-pill, .honor-row, .ob-card")
+            .querySelectorAll("a:not(.project-card *):not(.research-card *):not(.ob-card *), button:not(.project-card *):not(.research-card *):not(.ob-card *), .project-card, .research-card, .ob-card, .skill-pill, .honor-row")
             .forEach((el) => {
               el.addEventListener("mouseenter", () => {
                 cursorRing.style.width = "54px";
