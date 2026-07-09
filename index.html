@@ -17,12 +17,74 @@
       })();
     </script>
     <title>
-      Prasham Shah — CS + Math @ Harvard, ML Researcher &amp; Builder
+      Prasham Shah — CS + Math @ Harvard | ML Researcher &amp; Builder
     </title>
     <meta
       name="description"
-      content="Prasham Shah — CS + Math at Harvard College, ML researcher, and full-stack engineer."
+      content="Prasham Shah is a CS + Math student at Harvard College, ML researcher, and skilled developer. Some projects he's worked on: AI research (neural-network symbolic regression, multimodal LLM robustness) and production full-stack engineering (Dorm to Door, Legal Lieutenant, Ultra Ball, SocialScanner)."
     />
+    <meta name="author" content="Prasham Shah" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://shahprasham.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Prasham Shah — CS + Math @ Harvard, ML Researcher & Builder"
+    />
+    <meta
+      property="og:description"
+      content="ML researcher and full-stack engineer studying CS & Math at Harvard College. Symbolic regression research, MLLM robustness studies, and shipped products used by thousands."
+    />
+    <meta property="og:url" content="https://shahprasham.com/" />
+    <meta property="og:site_name" content="Prasham Shah" />
+    <meta property="og:image" content="https://shahprasham.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Prasham Shah — CS + Math @ Harvard, ML Researcher & Builder"
+    />
+    <meta
+      name="twitter:description"
+      content="ML researcher and full-stack engineer studying CS & Math at Harvard College."
+    />
+    <meta name="twitter:image" content="https://shahprasham.com/og-image.png" />
+
+    <meta
+      name="theme-color"
+      content="#0a0e13"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#f2f1ec"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Prasham Shah",
+        "url": "https://shahprasham.com/",
+        "image": "https://shahprasham.com/profile.jpg",
+        "jobTitle": "ML Researcher & Software Engineer",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Harvard College"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/prasham-c-shah",
+          "https://github.com/ps-coding"
+        ]
+      }
+    </script>
 
     <link
       rel="icon"
@@ -1620,7 +1682,7 @@
     <header class="hero reveal in" id="hero">
       <div class="hero-canvas-wrap"><canvas id="heroCanvas"></canvas></div>
       <div class="wrap hero-inner">
-        <div class="hero-kicker">CS + Mathematics · Harvard College</div>
+        <div class="hero-kicker">CS + Math · Harvard College</div>
         <h1>Prasham<br />Shah</h1>
         <div class="hero-role-row">
           <span class="bracket">// currently:</span>
@@ -2760,7 +2822,9 @@
           }
           loop();
           document
-            .querySelectorAll("a:not(.project-card *):not(.research-card *):not(.ob-card *), button:not(.project-card *):not(.research-card *):not(.ob-card *), .project-card, .research-card, .ob-card, .skill-pill, .honor-row")
+            .querySelectorAll(
+              "a:not(.project-card *):not(.research-card *):not(.ob-card *), button:not(.project-card *):not(.research-card *):not(.ob-card *), .project-card, .research-card, .ob-card, .skill-pill, .honor-row",
+            )
             .forEach((el) => {
               el.addEventListener("mouseenter", () => {
                 cursorRing.style.width = "54px";
