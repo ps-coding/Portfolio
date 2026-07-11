@@ -1,0 +1,43 @@
+# Prasham Shah
+
+> CS + Math student at Harvard College, ML researcher, and full-stack software engineer. Work spans neural-network symbolic regression, multimodal LLM robustness research, and shipped production software (Dorm to Door, Legal Lieutenant, Ultra Ball, SocialScanner).
+
+Personal portfolio site covering research, projects, honors, and skills. Canonical URL: https://shahprasham.com/
+
+## About
+- CS + Math student at Harvard College; ML researcher and full-stack engineer.
+- Currently Software Engineer @ Dorm to Door Student Storage; student @ Harvard & MIT.
+- Open to research and engineering internships. Contact: prashamshah@college.harvard.edu
+- Languages: English (native), Gujarati (native), Hindi (fluent), Spanish (working).
+
+## Research
+- [Symbolic Regression for Physics Discovery](https://shahprasham.com/#symbolicRegression): Drew University, advised by Dr. Minjoon Kouh. First-authored IEEE paper and poster (Best Poster, IEEE MIT URTC, ~700 submissions). Extended Udrescu & Tegmark's AI Feynman with a novel adaptive-alpha symmetry-detection rule that nearly doubled true symmetry detections while cutting false positives tenfold.
+- [MLLM Robustness to Real-World Noise](https://shahprasham.com/#mllmRobustness): Independent research published via Cambridge Open Engage (380+ abstract views, 120+ downloads). Tested GPT-4o, LLaVA, and GPT-3.5 against textual and image noise; found multimodal LLMs degrade more under noisy text than text-only LLMs, and that classical denoising hurts rather than helps performance.
+
+## Projects
+- [Dorm to Door Student Storage](https://shahprasham.com/#dormToDoor): Full-stack summer-storage logistics platform (React, Firebase, Stripe, graph-based route optimization) live across 17+ college campuses.
+- [Legal Lieutenant](https://github.com/ps-coding/LegalLieutenant): AI legal assistant helping immigrants and low-income students with immigration, rental, employment, and FAFSA paperwork. 1st place, Empower Hacks 2.0 (2,000 competitors, $210K prize pool).
+- [SocialScanner](https://github.com/ps-coding/SocialScanner): Privacy-first ML screener analyzing grade trends, social media, and counselor notes for early student mental-health warning signs. Presented at national TSA conference.
+- [Ultra Ball](https://github.com/ps-coding/ultraball): Solo-built real-time multiplayer game with a custom WebSocket server, bot AI, and SvelteKit/TypeScript client. 200+ organic daily active users.
+- FIRST Tech Challenge — Team 5387: Captain & Lead Programmer for four seasons; wrote autonomous routine (PID control, OpenCV, embedded ML) that set a team scoring record. Won Inspire Award.
+
+## Other builds
+- [number_to_words](https://github.com/ps-coding/number_to_words): Number-to-words converter written in idiomatic Rust.
+- [math-practice](https://github.com/ps-coding/math-practice): Arithmetic practice game with scaling difficulty and a coin-based powerup system, in JavaScript.
+- [CompetitiveProgramming](https://github.com/ps-coding/CompetitiveProgramming): Archive of competitive-programming solutions, including USACO and Lockheed Martin Code Quest.
+
+## Honors
+- MIT URTC (IEEE CS Conference): Best Poster, among ~700 total submissions.
+- Empower Hacks 2.0: 1st place internationally, 2,000 competitors, $210K prize pool.
+- Lockheed Martin Code Quest: 3rd place, Advanced Division, inter-state.
+- NJ Governor's School in the Sciences: 1 of 56 scholars statewide.
+- U.S. Presidential Scholar: National semifinalist, top 0.01%.
+- Stamps Scholarship: 1 of 430 national semifinalists at Georgia Tech, top 1%.
+- DECA International Finalist (2x): Top 10 in world, business consulting competition.
+- Eagle Scout: Top 4% nationally of all scouts.
+
+## Contact
+- Email: prashamshah@college.harvard.edu
+- [LinkedIn](https://www.linkedin.com/in/prasham-c-shah)
+- [GitHub](https://github.com/ps-coding)
+- [Résumé (PDF)](https://shahprasham.com/Prasham_Shah_Resume.pdf)
