@@ -581,9 +581,7 @@
           color 0.15s;
       }
       .cmdk-item .l {
-        display: flex;
-        align-items: center;
-        gap: 11px;
+        display: inline;
       }
       .cmdk-item .tag {
         font-family: var(--mono);
@@ -602,6 +600,45 @@
       .cmdk-item:hover .tag {
         border-color: var(--accent);
         color: var(--accent);
+      }
+      .cmdk-item .l mark {
+        background: none;
+        color: var(--accent);
+        font-weight: 600;
+      }
+      .cmdk-empty {
+        padding: 28px 12px;
+        text-align: center;
+        font-family: var(--sans);
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .cmdk-footer {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 10px 16px;
+        border-top: 1px solid var(--line);
+      }
+      .cmdk-hint {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--sans);
+        font-size: 11.5px;
+        color: var(--muted);
+      }
+      .cmdk-hint-open {
+        margin-left: auto;
+      }
+      .cmdk-key {
+        font-family: var(--mono);
+        font-size: 10.5px;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 2px 6px;
+        line-height: 1;
       }
 
       /* ============ HERO ============ */
@@ -1593,8 +1630,8 @@
           <button
             class="icon-btn"
             id="cmdkTrigger"
-            title="Command palette"
-            aria-label="Open command palette"
+            title="Command palette (⌘K)"
+            aria-label="Open command palette (Command or Control + K)"
           >
             <svg
               width="15"
@@ -1675,6 +1712,16 @@
           <span class="cmdk-esc">esc</span>
         </div>
         <div class="cmdk-list" id="cmdkList"></div>
+        <div class="cmdk-footer">
+          <span class="cmdk-hint"
+            ><span class="cmdk-key">↑↓</span> Navigate</span
+          >
+          <span class="cmdk-hint"><span class="cmdk-key">↵</span> Select</span>
+          <span class="cmdk-hint"><span class="cmdk-key">esc</span> Close</span>
+          <span class="cmdk-hint cmdk-hint-open"
+            ><span class="cmdk-key">⌘K</span> Toggle</span
+          >
+        </div>
       </div>
     </div>
 
@@ -2905,35 +2952,150 @@
             tag: "project",
             href: "#ultraBall",
           },
-          { label: "Honors & Recognition", tag: "section", href: "#honors" },
-          { label: "Contact", tag: "section", href: "#contact" },
+          {
+            label: "Honors & Recognition",
+            tag: "section",
+            href: "#honors",
+            keywords: "awards",
+          },
+          {
+            label: "Contact",
+            tag: "section",
+            href: "#contact",
+            keywords: "email reach out",
+          },
           {
             label: "Download résumé",
             tag: "file",
             href: "Prasham_Shah_Resume.pdf",
+            keywords: "resume cv pdf",
           },
           {
             label: "Open GitHub",
             tag: "link",
             href: "https://github.com/ps-coding",
+            keywords: "github code repo repository",
           },
           {
             label: "Open LinkedIn",
             tag: "link",
             href: "https://www.linkedin.com/in/prasham-c-shah",
+            keywords: "linkedin profile network",
           },
         ];
         let activeIdx = 0;
-        function renderCmdk(filter) {
-          const f = (filter || "").toLowerCase();
-          const filtered = commands.filter((c) =>
-            c.label.toLowerCase().includes(f),
+
+        // Strips combining diacritical marks (é -> e) so queries typed without
+        // accents still match accented labels. Falls back to the original
+        // string if decomposition would shift character positions, since
+        // highlight indices are mapped back onto the un-folded target.
+        function foldDiacritics(s) {
+          const folded = s.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+          return folded.length === s.length ? folded : s;
+        }
+
+        // ---- Fuzzy matching (ordered subsequence, fzf/VS Code style scoring) ----
+        // Rewards: matches at word boundaries, consecutive runs, and matches
+        // near the start of the string. Requires every query char to appear
+        // in order in the target, but not contiguously (typo/skip tolerant).
+        function fuzzyMatch(query, target) {
+          if (!target) return null;
+          const q = foldDiacritics(query.toLowerCase());
+          const t = foldDiacritics(target.toLowerCase());
+          if (!q) return { score: 0, indices: [] };
+          let qi = 0,
+            score = 0,
+            consecutive = 0,
+            prevIdx = -1;
+          const indices = [];
+          for (let ti = 0; ti < t.length && qi < q.length; ti++) {
+            if (t[ti] !== q[qi]) continue;
+            let bonus = 1;
+            if (prevIdx === ti - 1) {
+              consecutive++;
+              bonus += consecutive * 3;
+            } else {
+              consecutive = 0;
+            }
+            if (ti === 0 || /[\s\-—–_/&()]/.test(t[ti - 1])) bonus += 4;
+            if (target[ti] === query[qi]) bonus += 0.5; // case-exact nudge
+            score += bonus;
+            indices.push(ti);
+            prevIdx = ti;
+            qi++;
+          }
+          if (qi < q.length) return null; // not every query char matched, in order
+          score -= t.length * 0.01; // slight preference for shorter/tighter targets
+          score -= indices[0] * 0.05; // slight preference for earlier first match
+          return { score, indices };
+        }
+
+        function escapeHtml(s) {
+          return s.replace(
+            /[&<>"']/g,
+            (c) =>
+              ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;",
+              })[c],
           );
+        }
+
+        function highlightLabel(label, indices) {
+          if (!indices || !indices.length) return escapeHtml(label);
+          const hit = new Set(indices);
+          let out = "";
+          for (let i = 0; i < label.length; i++) {
+            const ch = escapeHtml(label[i]);
+            out += hit.has(i) ? `<mark>${ch}</mark>` : ch;
+          }
+          return out;
+        }
+
+        function searchCommands(query) {
+          const f = query.trim();
+          if (!f) return commands.map((c) => ({ c, indices: null }));
+          return commands
+            .map((c) => {
+              const labelHit = fuzzyMatch(f, c.label);
+              const tagHit = fuzzyMatch(f, c.tag);
+              const kwHit = fuzzyMatch(f, c.keywords || "");
+              // Prefer the label match (and its highlight indices) whenever
+              // it exists; otherwise fall back to tag/keyword matches, which
+              // count toward relevance but don't drive the highlighting.
+              const best =
+                labelHit || tagHit || kwHit
+                  ? Math.max(
+                      labelHit ? labelHit.score : -Infinity,
+                      tagHit ? tagHit.score - 2 : -Infinity,
+                      kwHit ? kwHit.score - 1 : -Infinity,
+                    )
+                  : null;
+              if (best === null) return null;
+              return { c, indices: labelHit ? labelHit.indices : null, score: best };
+            })
+            .filter(Boolean)
+            .sort((a, b) => b.score - a.score);
+        }
+
+        function renderCmdk(filter) {
+          const results = searchCommands(filter || "");
           cmdkList.innerHTML = "";
-          filtered.forEach((c, i) => {
+          if (!results.length) {
+            const empty = document.createElement("div");
+            empty.className = "cmdk-empty";
+            empty.textContent = `No results for "${filter}"`;
+            cmdkList.appendChild(empty);
+            cmdkList._filtered = [];
+            return;
+          }
+          results.forEach(({ c, indices }, i) => {
             const div = document.createElement("div");
             div.className = "cmdk-item" + (i === activeIdx ? " active" : "");
-            div.innerHTML = `<span class="l">${c.label}</span><span class="tag">${c.tag}</span>`;
+            div.innerHTML = `<span class="l">${highlightLabel(c.label, indices)}</span><span class="tag">${c.tag}</span>`;
             div.addEventListener("click", () => go(c));
             div.addEventListener("mouseenter", () => {
               activeIdx = i;
@@ -2941,7 +3103,7 @@
             });
             cmdkList.appendChild(div);
           });
-          cmdkList._filtered = filtered;
+          cmdkList._filtered = results.map((r) => r.c);
         }
         function refreshActive() {
           Array.from(cmdkList.children).forEach((el, i) =>
