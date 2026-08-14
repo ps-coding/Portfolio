@@ -1792,8 +1792,8 @@
               <path
                 d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.1L12 16.3l-6.3 4.4L8 13.6l-6-4.4h7.6z"
               /></svg
-            ><span class="pv">Live in production</span>&nbsp;— Dorm to Door (17+
-            colleges), Ultra Ball (organic 500+ DAU), &hellip;
+            ><span class="pv">Live in production</span>&nbsp;— Dorm to Door
+            (expanding to 50 colleges), Ultra Ball (organic 500+ DAU), &hellip;
           </span>
         </div>
         <div class="hero-cta">
@@ -2201,7 +2201,8 @@
                 <h3>Dorm to Door Student Storage</h3>
                 <p class="project-pitch">
                   Full-stack summer-storage platform for college students
-                  orchestrating live storage logistics across 17+ campuses.
+                  orchestrating live storage logistics across almost 50
+                  campuses.
                 </p>
                 <p class="project-desc">
                   As a lead software engineer, architected and shipped the
@@ -3086,7 +3087,11 @@
                     )
                   : null;
               if (best === null) return null;
-              return { c, indices: labelHit ? labelHit.indices : null, score: best };
+              return {
+                c,
+                indices: labelHit ? labelHit.indices : null,
+                score: best,
+              };
             })
             .filter(Boolean)
             .sort((a, b) => b.score - a.score);
