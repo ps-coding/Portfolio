@@ -152,8 +152,10 @@
         }
         * {
           animation-duration: 0.001ms !important;
+          animation-delay: 0ms !important;
           animation-iteration-count: 1 !important;
           transition-duration: 0.001ms !important;
+          transition-delay: 0ms !important;
           scroll-behavior: auto !important;
         }
       }
@@ -896,17 +898,25 @@
 
       .reveal {
         opacity: 0;
-        transform: translateY(28px);
-        transition:
-          opacity 0.8s var(--ease),
-          transform 0.8s var(--ease);
       }
       .reveal.in {
         opacity: 1;
-        transform: translateY(0);
+        animation: revealIn 1.1s var(--ease) both;
+        animation-delay: calc(var(--i, 0) * 120ms);
       }
-      .stagger > * {
-        transition-delay: calc(var(--i, 0) * 90ms);
+      /* Hero is ".reveal.in" from load; its children run their own riseIn */
+      .hero.reveal.in {
+        animation: none;
+      }
+      @keyframes revealIn {
+        from {
+          opacity: 0;
+          transform: translateY(48px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
       }
 
       /* ============ ABOUT ============ */
@@ -1783,7 +1793,7 @@
                 d="M12 2l2.4 7.2H22l-6 4.4 2.3 7.1L12 16.3l-6.3 4.4L8 13.6l-6-4.4h7.6z"
               /></svg
             ><span class="pv">Live in production</span>&nbsp;— Dorm to Door (17+
-            colleges), Ultra Ball (organic 200+ DAU), &hellip;
+            colleges), Ultra Ball (organic 500+ DAU), &hellip;
           </span>
         </div>
         <div class="hero-cta">
@@ -2391,7 +2401,7 @@
                   SvelteKit + TypeScript client.
                 </p>
                 <span class="project-metric"
-                  >200+ daily active users, reached organically within months of
+                  >500+ daily active users, reached organically within months of
                   launch</span
                 >
                 <div class="chip-row">
@@ -2784,15 +2794,16 @@
         const revealEls = document.querySelectorAll(".reveal");
         const revealObserver = new IntersectionObserver(
           (entries) => {
-            entries.forEach((entry, i) => {
+            let batch = 0;
+            entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                entry.target.style.setProperty("--i", i % 6);
+                entry.target.style.setProperty("--i", batch++ % 6);
                 entry.target.classList.add("in");
                 revealObserver.unobserve(entry.target);
               }
             });
           },
-          { threshold: 0.12 },
+          { threshold: 0, rootMargin: "0px 0px -10% 0px" },
         );
         revealEls.forEach((el) => revealObserver.observe(el));
 
