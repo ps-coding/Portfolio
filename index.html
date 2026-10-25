@@ -3149,10 +3149,12 @@
           });
           cmdkList._filtered = results.map((r) => r.c);
         }
-        function refreshActive() {
+        function refreshActive(scroll) {
           Array.from(cmdkList.children).forEach((el, i) =>
             el.classList.toggle("active", i === activeIdx),
           );
+          if (scroll)
+            cmdkList.children[activeIdx]?.scrollIntoView({ block: "nearest" });
         }
         function go(c) {
           closeCmdk();
@@ -3195,12 +3197,12 @@
             if (e.key === "ArrowDown") {
               e.preventDefault();
               activeIdx = Math.min(activeIdx + 1, list.length - 1);
-              refreshActive();
+              refreshActive(true);
             }
             if (e.key === "ArrowUp") {
               e.preventDefault();
               activeIdx = Math.max(activeIdx - 1, 0);
-              refreshActive();
+              refreshActive(true);
             }
             if (e.key === "Enter") {
               e.preventDefault();
