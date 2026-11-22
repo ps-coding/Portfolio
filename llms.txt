@@ -1,6 +1,6 @@
 # Prasham Shah
 
-> First-year student at Harvard College studying computer science and mathematics. His research covers symbolic regression for physics and the noise resistance of multimodal LLMs, and he has built production software including Dorm to Door, Legal Lieutenant, SocialScanner, and Ultra Ball.
+> Student at Harvard College studying computer science and mathematics. His research covers symbolic regression for physics and the noise resistance of multimodal LLMs, and he has built production software including Dorm to Door, Legal Lieutenant, SocialScanner, and Ultra Ball.
 
 Personal site covering research, projects, awards, and contact information. Canonical URL: https://shahprasham.com/
 
