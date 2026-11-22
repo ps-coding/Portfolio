@@ -1,40 +1,48 @@
 # Prasham Shah
 
-> CS + Math student at Harvard College, ML researcher, and full-stack software engineer. Work spans neural-network symbolic regression, multimodal LLM robustness research, and shipped production software (Dorm to Door, Legal Lieutenant, Ultra Ball, SocialScanner).
+> First-year student at Harvard College studying computer science and mathematics. His research covers symbolic regression for physics and the noise resistance of multimodal LLMs, and he has built production software including Dorm to Door, Legal Lieutenant, SocialScanner, and Ultra Ball.
 
-Personal portfolio site covering research, projects, honors, and skills. Canonical URL: https://shahprasham.com/
+Personal site covering research, projects, awards, and contact information. Canonical URL: https://shahprasham.com/
 
 ## About
-- CS + Math student at Harvard College; ML researcher and full-stack engineer.
-- Currently Software Engineer @ Dorm to Door Student Storage; student @ Harvard & MIT.
-- Open to research and engineering internships. Contact: prashamshah@college.harvard.edu
-- Languages: English (native), Gujarati (native), Hindi (fluent), Spanish (working).
+- First-year student at Harvard College, A.B. in Computer Science and Mathematics. Originally from New Jersey.
+- Technical fellow on the AI Safety Team, researching interpretability and alignment, since September 2026.
+- Analyst at Harvard Consulting on Business and the Environment since September 2026, advising a multinational corporation with a market capitalization above $10 billion on integrating AI into its supply chain infrastructure.
+- Software engineer at Dorm to Door Student Storage, 2025–2026.
+- Currently looking for research and engineering internships. Contact: prashamshah@college.harvard.edu
+- Languages: English (native), Gujarati (native), Hindi (fluent), Spanish (working proficiency).
 
 ## Research
-- [Symbolic Regression for Physics Discovery](https://shahprasham.com/#symbolicRegression): Drew University, advised by Dr. Minjoon Kouh. First-authored IEEE paper and poster (Best Poster, IEEE MIT URTC, ~700 submissions). Extended Udrescu & Tegmark's AI Feynman with a novel adaptive-alpha symmetry-detection rule that nearly doubled true symmetry detections while cutting false positives tenfold.
-- [MLLM Robustness to Real-World Noise](https://shahprasham.com/#mllmRobustness): Independent research published via Cambridge Open Engage (380+ abstract views, 120+ downloads). Tested GPT-4o, LLaVA, and GPT-3.5 against textual and image noise; found multimodal LLMs degrade more under noisy text than text-only LLMs, and that classical denoising hurts rather than helps performance.
+- [AI-assisted discovery of physics laws](https://shahprasham.com/#symbolicRegression): Summer 2025, NJ Governor's School in the Sciences at Drew University, advised by Dr. Minjoon Kouh. First author of an eleven-person IEEE paper; the poster won Best Poster at the IEEE MIT Undergraduate Research Technology Conference (first out of approximately 700 submissions). The team reimplemented the core of Udrescu and Tegmark's AI Feynman from scratch and tested it on data with added noise and varying numerical ranges. Prasham's main contribution was a novel adaptive-alpha rule for symmetry detection, which detected nearly twice as many true symmetries (110 compared to 60) and reduced false positives tenfold (3 compared to 29). [Paper (PDF)](https://shahprasham.com/papers/AI-Assisted_Discovery_of_Physics_Laws.pdf)
+- [Noise resistance of multimodal LLMs](https://shahprasham.com/#mllmRobustness): Independent research conducted in high school and published as a preprint on [Cambridge Open Engage](https://www.cambridge.org/engage/coe/article-details/68af5092728bf9025ea81bff) (not peer-reviewed; 534 views, 242 downloads, and 5 citations on Google Scholar as of November 2026). Tested two multimodal LLMs (GPT-4o and a locally hosted LLaVA model) and a text-only baseline (GPT-3.5) on 10 textual and 30 image-based prompts, each in clean, noisy, and denoised versions. Textual noise significantly reduced the multimodal models' scores (p = 0.025) but not the text-only model's, and spell-checking the prompts reduced the multimodal models' scores further (p = 0.010). [Paper (PDF)](https://shahprasham.com/papers/Multimodal_Large_Language_Model_Noise_Resistance.pdf), [DOI](https://doi.org/10.33774/coe-2025-6z9zx)
 
 ## Projects
-- [Dorm to Door Student Storage](https://shahprasham.com/#dormToDoor): Full-stack summer-storage logistics platform (React, Firebase, Stripe, graph-based route optimization) live across 17+ college campuses.
-- [Legal Lieutenant](https://github.com/ps-coding/LegalLieutenant): AI legal assistant helping immigrants and low-income students with immigration, rental, employment, and FAFSA paperwork. 1st place, Empower Hacks 2.0 (2,000 competitors, $210K prize pool).
-- [SocialScanner](https://github.com/ps-coding/SocialScanner): Privacy-first ML screener analyzing grade trends, social media, and counselor notes for early student mental-health warning signs. Presented at national TSA conference.
-- [Ultra Ball](https://github.com/ps-coding/ultraball): Solo-built real-time multiplayer game with a custom WebSocket server, bot AI, and SvelteKit/TypeScript client. 200+ organic daily active users.
-- FIRST Tech Challenge — Team 5387: Captain & Lead Programmer for four seasons; wrote autonomous routine (PID control, OpenCV, embedded ML) that set a team scoring record. Won Inspire Award.
+- [Dorm to Door Student Storage](https://shahprasham.com/#dormToDoor): Summer-storage startup for college students. Architected and shipped the full-stack platform (React frontend, Node.js backend, Firebase, Stripe, OAuth, admin systems) while the company expanded from 3 universities to nearly 50 campuses. Engineered the delivery-routing system using the Clarke-Wright savings heuristic and 2-opt local optimization. 99.97% uptime throughout the 2025 season.
+- [Legal Lieutenant](https://github.com/ps-coding/LegalLieutenant): AI legal assistant that helps immigrants and low-income students understand immigration forms, rental agreements, employment documents, and the FAFSA. Team lead. Live at https://legal-lieutenant.vercel.app. First place at Empower Hacks 2.0 (2,000 international competitors, $210K prize pool).
+- [JainClock](https://github.com/ps-coding/JainClock): Arduino-powered, 3D-printed clock for Jains that displays local sunrise and sunset times, the current tithi (lunar day), and a reference to 16 pachkhans (vows). Firmware in C++ with LVGL on an Arduino GIGA R1; an Express server combines geolocation, time, astronomy, and tithi APIs into a single response.
+- [SocialScanner](https://github.com/ps-coding/SocialScanner): Privacy-first, machine-learning-based mental-health screening system for schools, developed with a partner and backed by the Northern Burlington High School administration. Uses a one-model-per-metric architecture so that a school can activate only the signals it chooses. Presented at the national Technology Student Association (TSA) conference.
+- [Ultra Ball](https://github.com/ps-coding/ultraball): Online version (playable at https://ultra.shahprasham.com) of a 15-move hand game that Prasham's friend group invented in 2018 by extending War. Real-time multiplayer web game developed independently, with a fully custom, client-agnostic WebSocket server, behavior-tree bot opponents, and a SvelteKit and TypeScript client. Grew organically to more than 500 daily active users.
+- FIRST Tech Challenge, Team 5387 (Northern Burlington TecHounds): Captain and lead programmer for four seasons. Wrote the autonomous routine (PID control, OpenCV-based vision, lightweight machine learning) that set a team scoring record. Secured over $15,000 in sponsorships. Won the Inspire Award.
 
-## Other builds
-- [number_to_words](https://github.com/ps-coding/number_to_words): Number-to-words converter written in idiomatic Rust.
-- [math-practice](https://github.com/ps-coding/math-practice): Arithmetic practice game with scaling difficulty and a coin-based powerup system, in JavaScript.
-- [CompetitiveProgramming](https://github.com/ps-coding/CompetitiveProgramming): Archive of competitive-programming solutions, including USACO and Lockheed Martin Code Quest.
+## Other projects
+- [JainScan](https://github.com/ps-coding/JainScan): Mobile app that tells Jains whether they can eat a packaged food, using Tesseract OCR on a photo of the ingredient list and GPT-4o-mini to check for prohibited ingredients.
+- [PhysicsWaveSim](https://github.com/ps-coding/PhysicsWaveSim): Wave simulator with water-wave and double-slit (light, electron, single-electron) modes. Live at https://physics-wave-sim.vercel.app
+- [PantryPalCore](https://github.com/ps-coding/PantryPalCore): Finds recipes that can be made with the ingredients the user already has.
+- [SolarizeSolutions](https://github.com/ps-coding/SolarizeSolutions): Website that helps homeowners learn about solar energy, built with a team for the 2024 TSA national conference.
+- [math-practice](https://github.com/ps-coding/math-practice): Arithmetic practice game in JavaScript with scaling difficulty and a coin-based system for unlocking power-ups.
+- [number_to_words](https://github.com/ps-coding/number_to_words): Number-to-words converter written from scratch in idiomatic Rust.
+- [string_similarity](https://github.com/ps-coding/string_similarity): Custom string-similarity algorithm with a ranking function for search features.
+- [CompetitiveProgramming](https://github.com/ps-coding/CompetitiveProgramming): Archive of solutions to competitive-programming problems, including USACO and Lockheed Martin Code Quest problems.
 
-## Honors
-- MIT URTC (IEEE CS Conference): Best Poster, among ~700 total submissions.
-- Empower Hacks 2.0: 1st place internationally, 2,000 competitors, $210K prize pool.
-- Lockheed Martin Code Quest: 3rd place, Advanced Division, inter-state.
+## Awards
+- Best Poster, IEEE MIT Undergraduate Research Technology Conference (URTC): first out of approximately 700 submissions.
+- First place, Empower Hacks 2.0: 2,000 international competitors, $210K prize pool.
+- Third place, Advanced Division, Lockheed Martin Code Quest: inter-state algorithmic coding competition.
 - NJ Governor's School in the Sciences: 1 of 56 scholars statewide.
-- U.S. Presidential Scholar: National semifinalist, top 0.01%.
-- Stamps Scholarship: 1 of 430 national semifinalists at Georgia Tech, top 1%.
-- DECA International Finalist (2x): Top 10 in world, business consulting competition.
-- Eagle Scout: Top 4% nationally of all scouts.
+- U.S. Presidential Scholar semifinalist: 1 of 600 nationally, top 0.01% of eligible students.
+- Stamps Scholarship semifinalist at Georgia Tech: 1 of 430 nationally, top 1%.
+- DECA international finalist, twice: top 10 in the world, business consulting.
+- Eagle Scout: top 4% of scouts nationally; Senior Patrol Leader for 40+ scouts.
 
 ## Contact
 - Email: prashamshah@college.harvard.edu
