@@ -88,7 +88,7 @@
         <nav aria-label="Sections">
           <a href="#research">Research</a>
           <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+          <a href="#honors">Awards &amp; Skills</a>
           <a href="Prasham_Shah_Resume.pdf">Résumé</a>
         </nav>
         <button
@@ -123,13 +123,14 @@
           <h1>Prasham Shah</h1>
           <p>
             I'm a student at Harvard College studying computer science and
-            mathematics, and I'm originally from New Jersey. I love building
-            things, particularly applications of AI and machine learning.
+            mathematics, and I love building things, particularly applications
+            of AI and machine learning.
           </p>
           <p>
             So far, that has meant both research and software engineering. On
             the research side, I have written two papers: one on recovering
-            physics equations from noisy data and one on the noise resistance of
+            physics equations from noisy data by using models to detect
+            mathematical symmetries, and one on the noise resistance of
             multimodal large language models. On the engineering side, I have
             built the full-stack platform for a summer-storage startup that now
             operates on nearly 50 campuses, an AI legal assistant that won a
@@ -141,14 +142,14 @@
             This year, I'm a technical fellow on the AI Safety Team, where I
             research interpretability and alignment, and an analyst at Harvard
             Consulting on Business and the Environment, where my team advises a
-            multinational corporation with a market capitalization above $10
+            multinational automotive OEM with a market capitalization above $10
             billion on integrating AI into its supply chain infrastructure. My
             coursework includes Math 55, Stat 110, Stat 111, CS 51, CS 1240, and
             CS 1810.
           </p>
           <p>
-            I'm currently looking for research and engineering internships, and
-            the best way to reach me is by
+            I'm currently looking for research and engineering internships. The
+            best way to reach me is by
             <a href="mailto:prashamshah@college.harvard.edu">email</a>.
           </p>
         </section>
@@ -170,6 +171,10 @@
               by Dr. Minjoon Kouh ·
               <a href="papers/AI-Assisted_Discovery_of_Physics_Laws.pdf"
                 >Paper (PDF)</a
+              >
+              ·
+              <a href="https://github.com/AI-Physics-Discovery/code"
+                >Experiment materials (GitHub)</a
               >
             </p>
             <p>
@@ -211,8 +216,8 @@
               data of a particular scale: for values between −1 and 1, the shift
               is too large for the network to extrapolate accurately, and for
               values between −100 and 100, it is too small to change the output
-              noticeably. My rule instead scales α in proportion to the standard
-              deviation of the columns being tested.
+              noticeably. My rule instead scales α based on the joint
+              distributions of the columns being tested.
             </p>
             <figure>
               <div class="bar-group">True symmetries detected</div>
@@ -238,8 +243,10 @@
               Across all of our test equations and data ranges, the adaptive
               rule detected nearly twice as many true symmetries (110 compared
               to 60) and reduced false positives tenfold (3 compared to 29),
-              with the largest improvements on small numerical ranges. The
-              poster based on this paper won Best Poster at the IEEE MIT
+              with the largest improvements on small numerical ranges.
+            </p>
+            <p>
+              The poster based on this paper won Best Poster at the IEEE MIT
               Undergraduate Research Technology Conference, placing first out of
               approximately 700 submissions.
             </p>
@@ -254,14 +261,14 @@
               Independent research ·
               <a
                 href="https://www.cambridge.org/engage/coe/article-details/68af5092728bf9025ea81bff"
-                >preprint on Cambridge Open Engage</a
+                >preprint</a
               >
               (534 views, 242 downloads, and
               <a
                 href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=87Rq5mAAAAAJ&amp;citation_for_view=87Rq5mAAAAAJ:u5HHmVD_uO8C"
                 >5 citations on Google Scholar</a
               >
-              as of November 2026) ·
+              as of Nov 2026) ·
               <a
                 href="papers/Multimodal_Large_Language_Model_Noise_Resistance.pdf"
                 >Paper (PDF)</a
@@ -290,14 +297,16 @@
             </p>
             <p>
               My first hypothesis, that MLLMs would be less resistant to noise
-              than a text-only LLM, was supported: textual noise significantly
-              reduced the MLLMs' scores (p = 0.025 for the two combined) but did
-              not change GPT-3.5's, and the smaller MLLM, LLaVA, was affected
-              more than GPT-4o (p = 0.048 for LLaVA alone). My second
-              hypothesis, that denoising would improve performance, was refuted,
-              which I found to be the most interesting result of the study:
-              spell-checking the prompts significantly reduced the MLLMs' scores
-              (p = 0.010), and denoising the images did not improve them either.
+              than a text-only LLM (a hypothesis I developed based on the
+              similar established result for classification models), was
+              supported: textual noise significantly reduced the MLLMs' scores
+              (p = 0.025 for the two combined) but did not change GPT-3.5's, and
+              the smaller MLLM, LLaVA, was affected more than GPT-4o (p = 0.048
+              for LLaVA alone). My second hypothesis, that denoising would
+              improve performance, was refuted, which I found to be the most
+              interesting result of the study: spell-checking the prompts
+              significantly reduced the MLLMs' scores (p = 0.010), and denoising
+              the images did not improve them either.
             </p>
             <figure>
               <div class="bar-group">
@@ -347,10 +356,10 @@
               One plausible explanation is that LLMs, having been trained on
               vast quantities of text, are already more capable spell-checkers
               than aspell, so pre-processing a prompt with a less capable tool
-              introduces more errors than it removes. Because this was a small
-              study and the preprint has not been peer-reviewed, the results
-              should be confirmed with larger sample sizes, and future work
-              could also test a small LLM as the denoiser.
+              introduces more errors than it removes. Because this was still a
+              relatively small study due to the resources I had available at the
+              time, the results should be confirmed with larger sample sizes,
+              and future work could also test a small LLM as the denoiser.
             </p>
           </article>
         </section>
@@ -363,7 +372,11 @@
               <h3>Dorm to Door Student Storage</h3>
               <span class="when">2025–2026</span>
             </div>
-            <p class="meta">Software Engineer · Remote</p>
+            <p class="meta">
+              Software Engineer · Remote ·
+              <a href="https://dtdstudentstorage.com/">Live site</a>
+              <small>(no longer maintained by me)</small>
+            </p>
             <p>
               Dorm to Door is a summer-storage startup that picks up college
               students' belongings in the spring, stores them over the summer,
@@ -381,7 +394,7 @@
               with 2-opt local optimization. The platform supported live
               production traffic throughout the 2025 season with 99.97% uptime.
             </p>
-            <p class="meta">React, TypeScript, Node.js, Firebase, Stripe</p>
+            <p class="meta">React, Firebase, Stripe, Node.js, TypeScript</p>
           </article>
 
           <article class="entry" id="legalLieutenant">
@@ -401,15 +414,18 @@
               assistant that helps them understand it. I led the team that
               developed it at Empower Hacks 2.0, where we built a custom NLP
               pipeline that divides dense legal documents into chunks,
-              fine-tuned GPT-4o-mini for domain-specific question answering and
-              summarization, and implemented standards-compliant authentication
-              ourselves.
+              fine-tuned GPT-4o-mini and integrated RAG for domain-specific
+              question answering and summarization, and implemented
+              standards-compliant authentication ourselves, though we later
+              ported to OAuth.
             </p>
             <p>
               Legal Lieutenant won first place at the hackathon, which had 2,000
               international competitors and a $210K prize pool.
             </p>
-            <p class="meta">Node.js, Express, EJS, Firebase, GPT fine-tuning</p>
+            <p class="meta">
+              GPT Fine-tuning, RAG, NLP Pipelines, Express, EJS, JavaScript
+            </p>
           </article>
 
           <article class="entry" id="jainClock">
@@ -418,7 +434,7 @@
               <span class="when">2026</span>
             </div>
             <p class="meta">
-              Hardware project ·
+              Sole developer · Embedded (hardware) project ·
               <a href="https://github.com/ps-coding/JainClock">GitHub</a>
             </p>
             <p>
@@ -439,7 +455,9 @@
               single response so that the microcontroller only needs to make one
               HTTPS request.
             </p>
-            <p class="meta">C++, Arduino, LVGL, Node.js, Express</p>
+            <p class="meta">
+              C++, Arduino, LVGL, TCP, PlatformIO, Node.js, Express
+            </p>
           </article>
 
           <article class="entry" id="socialScanner">
@@ -454,23 +472,32 @@
             <p>
               SocialScanner is a privacy-first, machine-learning-based
               mental-health screening system that a partner and I developed to
-              help school counselors identify early warning signs in students.
-              It analyzes grade trends, social media text and images, and
-              transcripts of counselor sessions. After we presented it to the
-              Northern Burlington County Regional High School administration,
-              the school gave the project its commendation and backing.
+              help school counselors identify early warning signs in students,
+              ultimately aiming to help more students get the help they need and
+              deserve. It analyzes research-backed metrics for mental health,
+              including grade trends, social media text and images, and audio
+              recordings or transcripts of counselor sessions. After we
+              presented it to the Northern Burlington County Regional High
+              School administration, the school gave the project its
+              commendation and backing. To ensure safety, all features have
+              explicit guards, unremovable by schools or even us, to ensure
+              student consent (e.g., for social media data, the student must
+              explicitly approve a request from Instagram in order to have their
+              data monitored—this is a decision students/families can make for
+              themselves).
             </p>
             <p>
-              To protect student privacy, we used a one-model-per-metric
-              architecture, which allows a school to activate only the signals
-              it chooses. We built the models in PyTorch and used parallel
-              computing to generate counselor reports in bulk. We also presented
-              the project at the national Technology Student Association (TSA)
-              conference, and the feedback we received there helped us improve
-              the software further. The public repository contains an older,
-              simpler version of the codebase.
+              To provide more optionality, ease adoption, and protect student
+              privacy, we used a one-model-per-metric architecture, which allows
+              a school to activate only the signals it chooses. We built the
+              models in PyTorch and used parallel computing to generate
+              counselor reports in bulk. We also presented the project at a
+              national TSA conference.
             </p>
-            <p class="meta">Python, PyTorch</p>
+            <p class="meta">
+              PyTorch, Computer Vision, NLP, Web Scraping, Parallel Computing,
+              Python
+            </p>
           </article>
 
           <article class="entry" id="ultraBall">
@@ -504,7 +531,9 @@
               with SvelteKit and TypeScript. The game grew organically to more
               than 500 daily active users within months of its launch.
             </p>
-            <p class="meta">TypeScript, SvelteKit, WebSockets</p>
+            <p class="meta">
+              WebSockets, SvelteKit, Behavior-tree AI, TypeScript
+            </p>
           </article>
 
           <article class="entry" id="robotics">
@@ -551,8 +580,10 @@
               >
               <span class="note"
                 >is a wave simulator with four modes: water waves (radial and
-                planar) and the double-slit experiment with light, with
-                electrons, and with single electrons.</span
+                planar) and the double-slit experiment with light, with quantum
+                mechanical electron waves, and with single electrons. The
+                experiment shows how even single electrons gradually display the
+                pattern predicted by wave interference!</span
               >
               <a href="https://physics-wave-sim.vercel.app">Live site</a>
             </li>
@@ -564,17 +595,6 @@
                 >finds recipes that you can make using just the ingredients you
                 already have, based on a dataset of Food.com recipes.</span
               >
-            </li>
-            <li>
-              <a href="https://github.com/ps-coding/SolarizeSolutions"
-                ><code>SolarizeSolutions</code></a
-              >
-              <span class="note"
-                >is a website that helps homeowners learn about solar energy,
-                which I built with a team for the 2024 TSA national
-                conference.</span
-              >
-              <a href="https://solarizesolutions.netlify.app">Live site</a>
             </li>
             <li>
               <a href="https://github.com/ps-coding/math-practice"
@@ -603,7 +623,10 @@
               >
               <span class="note"
                 >is a custom string-similarity algorithm with a ranking function
-                for search features.</span
+                for search features. I made this after learning that many
+                theoretical edit-distance algorithms are not very efficient, and
+                though I knew there were solutions out there, I wanted to see
+                what I could come up with.</span
               >
             </li>
             <li>
@@ -675,19 +698,33 @@
           <dl class="tools">
             <div>
               <dt>Languages</dt>
-              <dd>Python, TypeScript, C++, Java, Rust, Go, SQL</dd>
+              <dd>
+                C++, Python, TypeScript, OCaml, Java, Rust, Go, Haskell, SQL,
+                Shell (Bash & Zsh)
+              </dd>
             </div>
             <div>
               <dt>Full-stack</dt>
-              <dd>React / Next.js, SvelteKit, Node.js / Express, WebSockets</dd>
+              <dd>
+                TCP & low-level networking (embedded), WebSockets, React /
+                Next.js, SvelteKit, Node.js / Express, REST APIs, OAuth
+              </dd>
             </div>
             <div>
               <dt>AI / ML</dt>
-              <dd>PyTorch, scikit-learn, NumPy, pandas, OpenCV, SymPy</dd>
+              <dd>
+                PyTorch, Scikit-learn, SymPy, NumPy, Pandas, OpenCV, Natural
+                language processing (NLP), LLM fine-tuning, Retrieval-augmented
+                generation (RAG), Self-hosting LLMs (Ollama / LLaVA),
+                Multi-layer perceptrons (MLPs), Behavior-tree AI
+              </dd>
             </div>
             <div>
-              <dt>Infrastructure</dt>
-              <dd>Firebase / GCP, AWS (S3 and EC2), Linux</dd>
+              <dt>Infra &amp; Tools</dt>
+              <dd>
+                Firebase / GCP, AWS (S3 & EC2), Docker, Git, Linux,
+                Computer-Aided Design (CAD)
+              </dd>
             </div>
             <div>
               <dt>Communication</dt>
@@ -705,10 +742,11 @@
             The best way to reach me is by email at
             <a href="mailto:prashamshah@college.harvard.edu"
               >prashamshah@college.harvard.edu</a
-            >, and I read every message. I am also on
+            >. I read every message. I am also on
             <a href="https://www.linkedin.com/in/prasham-c-shah">LinkedIn</a>
             and <a href="https://github.com/ps-coding">GitHub</a>, and my
             <a href="Prasham_Shah_Resume.pdf">résumé</a> is available as a PDF.
+            I'm looking forward to hearing from you!
           </p>
         </section>
       </main>
